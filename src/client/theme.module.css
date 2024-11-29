@@ -1,0 +1,32 @@
+.anchor {
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  @mixin hover {
+    color: var(--mantine-primary-color-filled-hover);
+  }
+}
+
+.textInput {
+  border-radius: var(--mantine-radius-md);
+}
+
+.textInputLabel {
+  margin-bottom: 0.75rem;
+}
+
+.button {
+  &[data-size="lg"] {
+    font-size: var(--mantine-font-size-md);
+  }
+}
+
+.menuItem {
+  background: var(--mantine-color-dark-7);
+  @mixin hover {
+    background: var(--mantine-color-dark-6);
+  }
+}
+
+.paper {
+  background: var(--mantine-color-dark-8);
+  border-color: var(--mantine-color-gray-9);
+}

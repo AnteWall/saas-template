@@ -1,0 +1,39 @@
+.wrapper {
+  margin-top: 120px;
+  max-width: 432px;
+  width: 100%;
+  padding: 0 var(--mantine-spacing-xl);
+}
+
+.background {
+  background: radial-gradient(
+      ellipse 0% 50%,
+      var(--mantine-color-dark-9),
+      var(--mantine-color-dark-8)
+    )
+    center no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: -1;
+
+  @mixin light {
+    background: radial-gradient(
+        ellipse 0% 50%,
+        var(--mantine-color-gray-1),
+        var(--mantine-color-gray-2)
+      )
+      center no-repeat;
+  }
+}
+
+.affix {
+  padding: var(--mantine-spacing-xl);
+
+  @mixin smaller-than $mantine-breakpoint-sm {
+    padding: var(--mantine-spacing-lg);
+  }
+}

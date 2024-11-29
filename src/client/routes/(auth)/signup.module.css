@@ -1,0 +1,4 @@
+.textInput {
+    padding: 1.5rem 1rem;
+    border-radius: var(--mantine-radius-lg);
+}

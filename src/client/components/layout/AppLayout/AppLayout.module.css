@@ -1,0 +1,7 @@
+.navbar {
+  border: 1px solid var(--mantine-color-gray-9);
+}
+
+.header {
+  height: 52px;;
+}
