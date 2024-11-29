@@ -13,6 +13,7 @@ import {
 import { useForm } from "@mantine/form";
 import { IconBrandGoogleFilled } from "@tabler/icons-react";
 import classes from "./signin.module.css";
+import { signIn } from "../../hooks/auth";
 
 const SignIn: React.FC = () => {
   const form = useForm({
@@ -40,25 +41,25 @@ const SignIn: React.FC = () => {
         </Group>
       }
     >
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit((values) => signIn.email(values))}>
         <Stack>
           <TextInput
             withAsterisk
             label="Email"
             placeholder="Your email address"
-            className={classes.textInput}
+            classNames={{ input: classes.textInput }}
             key={form.key("email")}
             {...form.getInputProps("email")}
           />
           <PasswordInput
             withAsterisk
             label="Password"
-            className={classes.textInput}
+            classNames={{ input: classes.textInput }}
             placeholder="Your password"
             key={form.key("password")}
             {...form.getInputProps("password")}
           />
-          <Button size="lg" type="submit" fullWidth>
+          <Button size="lg" type="submit" fullWidth radius="lg">
             Sign in
           </Button>
           <Divider label="or" />
@@ -66,6 +67,7 @@ const SignIn: React.FC = () => {
             leftSection={<IconBrandGoogleFilled />}
             variant="outline"
             size="lg"
+            radius="lg"
           >
             Sign in with Google
           </Button>

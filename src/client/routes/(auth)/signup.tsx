@@ -64,14 +64,14 @@ const SignIn: React.FC = () => {
             withAsterisk
             label="Name"
             placeholder="Your name"
-            className={classes.textInput}
+            classNames={{ input: classes.textInput }}
             key={form.key("name")}
             {...form.getInputProps("name")}
           />
           <TextInput
             withAsterisk
             label="Email"
-            className={classes.textInput}
+            classNames={{ input: classes.textInput }}
             placeholder="Your email address"
             key={form.key("email")}
             {...form.getInputProps("email")}
@@ -79,12 +79,12 @@ const SignIn: React.FC = () => {
           <PasswordInput
             withAsterisk
             label="Password"
-            className={classes.textInput}
+            classNames={{ input: classes.textInput }}
             placeholder="Your password"
             key={form.key("password")}
             {...form.getInputProps("password")}
           />
-          <Button size="lg" type="submit" fullWidth>
+          <Button size="lg" type="submit" fullWidth radius="lg">
             Sign up
           </Button>
           {error && (
@@ -97,6 +97,7 @@ const SignIn: React.FC = () => {
             leftSection={<IconBrandGoogleFilled />}
             variant="outline"
             size="lg"
+            radius="lg"
           >
             Sign in with Google
           </Button>

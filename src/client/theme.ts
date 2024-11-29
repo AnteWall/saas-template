@@ -1,6 +1,7 @@
 import {
   Anchor,
   Button,
+  Card,
   CSSVariablesResolver,
   Input,
   MantineThemeOverride,
@@ -40,6 +41,12 @@ export const theme: MantineThemeOverride = {
   },
 
   components: {
+    Card: Paper.extend({
+      defaultProps: {
+        withBorder: true,
+        className: classes.paper,
+      },
+    }),
     Paper: Paper.extend({
       defaultProps: {
         withBorder: true,
