@@ -29,7 +29,7 @@
   border-left: 2px solid var(--mantine-primary-color-6);
 }
 
-.activeNestedLink {
+.nestedActiveLink {
   background: var(--mantine-color-dark-6);
   border-radius: var(--mantine-radius-md);
 }
@@ -60,8 +60,9 @@
 }
 
 .nestedLink {
+  text-decoration: none;
   @mixin hover {
-    background: var(--mantine-color-dark-7);
+    background: var(--mantine-color-dark-6);
     border-radius: var(--mantine-radius-md);
   }
 }

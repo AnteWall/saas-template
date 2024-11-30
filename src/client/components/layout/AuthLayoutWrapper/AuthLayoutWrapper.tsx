@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./AuthLayoutWrapper.module.css";
 import { Affix, Anchor, Center, Group, Stack, Title } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
-import { Logo } from "../../Logo";
+import { Logo } from "../../common/Logo";
 
 export interface AuthLayoutWrapperProps {
   title: string | React.ReactNode;

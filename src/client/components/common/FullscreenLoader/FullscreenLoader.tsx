@@ -2,13 +2,10 @@ import React from "react";
 import {
   Center,
   LoadingOverlay,
-  LoadingOverlayProps,
-  Overlay,
+  type LoadingOverlayProps,
 } from "@mantine/core";
 
-export interface FullscreenLoaderProps extends LoadingOverlayProps {}
-
-export const FullscreenLoader: React.FC<FullscreenLoaderProps> = ({
+export const FullscreenLoader: React.FC<LoadingOverlayProps> = ({
   visible = true,
   overlayProps,
 }) => {

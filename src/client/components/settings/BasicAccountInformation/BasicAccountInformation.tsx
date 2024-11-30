@@ -10,31 +10,29 @@ import {
   Text,
   Stack,
 } from "@mantine/core";
-import { changeEmail, updateUser, useSession } from "../../../hooks/auth";
+import { changeEmail, updateUser } from "../../../hooks/auth/auth";
 import { useForm } from "@mantine/form";
 import { toInitials } from "../../../utils/string";
+import { useSession } from "../../../hooks/auth/useSession";
 
-export interface BasicAccountInformationProps {}
-
-export const BasicAccountInformation: React.FC<
-  BasicAccountInformationProps
-> = ({}) => {
+export const BasicAccountInformation: React.FC = () => {
   const { data } = useSession();
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
   const form = useForm({
     initialValues: {
-      name: data?.user.name || "",
-      email: data?.user.email || "",
+      name: data?.data?.user.name || "",
+      email: data?.data?.user.email || "",
     },
   });
 
   useEffect(() => {
-    if (data) {
-      form.setFieldValue("name", data.user.name);
-      form.setFieldValue("email", data.user.email);
+    if (data && data.data) {
+      form.setFieldValue("name", data.data.user.name);
+      form.setFieldValue("email", data.data.user.email);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const handleSubmit = async ({
@@ -53,7 +51,7 @@ export const BasicAccountInformation: React.FC<
       setLoading(false);
       return;
     }
-    if (email != data?.user.email) {
+    if (email != data?.data?.user.email) {
       res = await changeEmail({ newEmail: email });
     }
     setError(res?.error?.message);
@@ -71,10 +69,10 @@ export const BasicAccountInformation: React.FC<
                   mt="md"
                   size="lg"
                   radius="xl"
-                  src={data?.user.image}
+                  src={data?.data?.user.image}
                   mx="xl"
                 >
-                  {toInitials(data?.user.name)}
+                  {toInitials(data?.data?.user.name)}
                 </Avatar>
               </Group>
             </Grid.Col>

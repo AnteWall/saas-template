@@ -1,4 +1,5 @@
 .env
+.react-router
 
 # Logs
 logs

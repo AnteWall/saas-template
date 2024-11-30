@@ -15,12 +15,10 @@ import {
   IconDeviceMobile,
   IconDeviceTablet,
 } from "@tabler/icons-react";
-import { useSession } from "../../../hooks/auth.ts";
+import { useSession } from "../../../hooks/auth/useSession.ts";
 import { useRevokeSessionMutation } from "../../../hooks/auth/useRevokeSessionMutation.ts";
 
-export interface SessionListProps {}
-
-export const SessionList: React.FC<SessionListProps> = ({}) => {
+export const SessionList: React.FC = () => {
   const { data } = useSession();
   const [revokeSessionId, setRevokeSessionId] = useState<string | undefined>(
     undefined
@@ -42,7 +40,7 @@ export const SessionList: React.FC<SessionListProps> = ({}) => {
   };
 
   const sessionsItems = (sessions?.data ?? []).map((session) => {
-    const isActive = session.id === data?.session.id;
+    const isActive = session.id === data?.data?.session.id;
     return (
       <Card.Section withBorder key={session.id} p="md">
         <Group>

@@ -1,14 +1,11 @@
 import React from "react";
 import classes from "./AppLayout.module.css";
 import { AppShell, Burger, useMatches } from "@mantine/core";
-import { DoubleNavbar } from "../../DoubleNavbar";
+import { DoubleNavbar } from "../../common/DoubleNavbar";
 import { useDisclosure } from "@mantine/hooks";
+import { Outlet } from "react-router";
 
-export interface AppLayoutProps {
-  children: React.ReactNode;
-}
-
-export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
+export const AppLayout: React.FC = () => {
   const matches = useMatches(
     {
       xs: false,
@@ -19,7 +16,6 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     },
     { getInitialValueInEffect: false }
   );
-  console.log(matches);
   const [opened, { toggle }] = useDisclosure(matches);
   return (
     <AppShell
@@ -46,7 +42,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
             px="md"
           />
         </div>
-        {children}
+        <Outlet />
       </AppShell.Main>
     </AppShell>
   );

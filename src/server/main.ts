@@ -1,6 +1,6 @@
 import { toNodeHandler } from "better-auth/node";
 import express from "express";
-import ViteExpress from "vite-express";
+import { bind } from "vite-express";
 import { auth } from "./auth/auth.js";
 
 const createServer = async () => {
@@ -15,7 +15,7 @@ const createServer = async () => {
     console.log("Server running on http://localhost:3000");
   });
 
-  ViteExpress.bind(app, server);
+  bind(app, server);
 };
 
 await createServer();

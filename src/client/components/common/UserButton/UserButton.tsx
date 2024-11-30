@@ -1,20 +1,22 @@
 import React from "react";
 import { Avatar, Group, Menu, Text, UnstyledButton } from "@mantine/core";
-import { useListOrganizations, useSession } from "../../hooks/auth";
+import { useAuth, useListOrganizations } from "../../../hooks/auth/auth";
 import { IconCheck } from "@tabler/icons-react";
-import { Link } from "@tanstack/react-router";
-import { toInitials } from "../../utils/string";
+import { toInitials } from "../../../utils/string";
+import { useSession } from "../../../hooks/auth/useSession";
+import { Link } from "react-router";
+import { paths } from "@/pages/paths";
 
-export interface UserButtonProps {}
+export const UserButton: React.FC = () => {
+  const { logout } = useAuth();
 
-export const UserButton: React.FC<UserButtonProps> = ({}) => {
   const { data, isPending } = useSession();
 
   const { data: organizations, isPending: organizationsPending } =
     useListOrganizations();
 
   const organizationLinks = organizations?.map((org) => {
-    const isActive = org.id === data?.session.activeOrganizationId;
+    const isActive = org.id === data?.data?.session.activeOrganizationId;
     return (
       <Menu.Item key={org.id}>
         <Group gap={8}>
@@ -34,17 +36,17 @@ export const UserButton: React.FC<UserButtonProps> = ({}) => {
     <UnstyledButton>
       <Menu position="right-end">
         <Menu.Target>
-          <Avatar radius="sm" src={data?.user.image}>
-            {toInitials(data?.user.name)}
+          <Avatar radius="sm" src={data?.data?.user.image}>
+            {toInitials(data?.data?.user.name)}
           </Avatar>
         </Menu.Target>
         <Menu.Dropdown>
           <Menu.Item>
             <Text fz="sm" fw="bold">
-              {data?.user.name}
+              {data?.data?.user.name}
             </Text>
             <Text fz="sm" c="dimmed">
-              {data?.user.email}
+              {data?.data?.user.email}
             </Text>
           </Menu.Item>
           <Menu.Divider />
@@ -52,11 +54,19 @@ export const UserButton: React.FC<UserButtonProps> = ({}) => {
           <Menu.Divider />
           <Menu.Item>Invite & manage members</Menu.Item>
 
-          <Link to="/settings">
+          <Link to={paths.Settings}>
             <Menu.Item>Settings</Menu.Item>
           </Link>
           <Menu.Divider />
-          <Menu.Item>Sign out</Menu.Item>
+          <Menu.Item
+            onClick={() =>
+              logout({
+                onSuccess: () => {},
+              })
+            }
+          >
+            Sign out
+          </Menu.Item>
         </Menu.Dropdown>
       </Menu>
     </UnstyledButton>

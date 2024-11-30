@@ -1,16 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { Title, Container } from "@mantine/core";
-import { AppLayout } from "../../components/layout/AppLayout";
-import { SplitSection } from "../../components/SplitSection";
+import { SplitSection } from "../../components/common/SplitSection";
 import { SessionList } from "../../components/settings/SessionList";
+import React from "react";
 
-export const Route = createFileRoute("/settings/security")({
-  component: RouteComponent,
-});
-
-function RouteComponent() {
+export const Security: React.FC = () => {
   return (
-    <AppLayout>
+    <>
       <Container>
         <Title>Account settings</Title>
         <SplitSection
@@ -21,6 +16,6 @@ function RouteComponent() {
           <SessionList />
         </SplitSection>
       </Container>
-    </AppLayout>
+    </>
   );
-}
+};

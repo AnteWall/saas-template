@@ -1,7 +1,6 @@
 import {
   Anchor,
   Button,
-  Card,
   CSSVariablesResolver,
   Input,
   MantineThemeOverride,

@@ -1,6 +1,48 @@
-import pluginQuery from "@tanstack/eslint-plugin-query";
+import js from "@eslint/js";
+import globals from "globals";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
+import tseslint from "typescript-eslint";
+import importPlugin from "eslint-plugin-import";
+import eslintConfigPrettier from "eslint-config-prettier";
 
-export default [
-  ...pluginQuery.configs["flat/recommended"],
-  // Any other config...
-];
+export default tseslint.config(
+  { ignores: ["dist"] },
+  {
+    extends: [
+      js.configs.recommended,
+      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
+      eslintConfigPrettier,
+      ...tseslint.configs.recommended,
+    ],
+    settings: {
+      "import/parsers": {
+        "@typescript-eslint/parser": [".ts", ".tsx"],
+      },
+      "import/resolver": {
+        "typescript-bun": {
+          // ^^ HERE! ^^
+          project: true,
+          alwaysTryTypes: true,
+        },
+      },
+    },
+    files: ["**/*.{ts,tsx}"],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+    plugins: {
+      "react-hooks": reactHooks,
+      "react-refresh": reactRefresh,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+    },
+  }
+);

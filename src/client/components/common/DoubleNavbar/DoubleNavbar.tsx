@@ -11,13 +11,6 @@ import {
   Tooltip,
 } from "@mantine/core";
 import {
-  Link,
-  linkOptions,
-  LinkProps,
-  useMatchRoute,
-  useSearch,
-} from "@tanstack/react-router";
-import {
   IconBuilding,
   IconDashboard,
   IconDashboardFilled,
@@ -29,19 +22,20 @@ import {
 import { Logo } from "../Logo";
 import { UserButton } from "../UserButton";
 import { ConditionalTooltip } from "../ConditionalTooltip";
-
-type Links = LinkProps["to"];
+import { NavLink, useLocation } from "react-router";
+import clsx from "clsx";
+import { paths } from "@/pages/paths";
 
 export interface NestedNavigation {
   name: string;
-  to: Links;
+  to: string;
   description: string;
   icon: React.ReactNode;
 }
 
 export interface Navigation {
   name: string;
-  to: Links;
+  to: string;
   description: string;
   icon: React.ReactNode;
   iconFilled: React.ReactNode;
@@ -53,17 +47,17 @@ export interface Navigation {
 }
 const links: Navigation[] = [
   {
-    name: "Dashboard",
-    to: "/",
+    name: "Home",
+    to: paths.Home,
     description: "View analytics and manage your account",
     icon: <IconDashboard size={20} />,
     iconFilled: <IconDashboardFilled size={20} />,
     nested: [
       {
-        label: "Dashboard",
+        label: "Home",
         links: [
           {
-            name: "Dashboard",
+            name: "Home",
             to: "/",
             description: "View analytics and manage your account",
             icon: <IconDashboard size={20} />,
@@ -72,13 +66,7 @@ const links: Navigation[] = [
       },
     ],
   },
-  {
-    name: "Other",
-    to: "/signin",
-    description: "View Other things",
-    icon: <IconDashboard size={20} />,
-    iconFilled: <IconDashboardFilled size={20} />,
-  },
+
   {
     name: "Settings",
     to: "/settings",
@@ -92,13 +80,13 @@ const links: Navigation[] = [
         links: [
           {
             name: "Account settings",
-            to: "/settings",
+            to: paths.Settings,
             description: "Manage your account settings",
             icon: <IconUser size={20} />,
           },
           {
             name: "Security",
-            to: "/settings/security",
+            to: paths.SettingsSecurity,
             description: "Manage your account security",
             icon: <IconLockAccess size={20} />,
           },
@@ -134,36 +122,41 @@ export const DoubleNavbar: React.FC<DoubleNavbarProps> = ({
   onCollapse,
   collapsed,
 }) => {
-  const matchRoute = useMatchRoute();
+  const location = useLocation();
 
   const matchedRoute = links.find((link) => {
-    const match = matchRoute({ to: link.to, fuzzy: true });
+    console.log(link.to, location.pathname);
+    if (link.to === "/") {
+      return location.pathname === "/";
+    }
+    const match = location.pathname.includes(link.to);
     return match;
   });
-  console.log(matchedRoute);
 
   const mainLinks = links
     .filter((l) => !l.hideInNav)
     .map((link) => (
       <Tooltip key={link.to} label={link.description} position="right-start">
-        <Link
+        <NavLink
           to={link.to}
-          activeOptions={{
-            exact: link.to === "/", // only exact match for home
-          }}
-          activeProps={{ className: classes.activeLink }}
-          className={classes.link}
+          className={({ isActive }) =>
+            clsx(classes.link, {
+              [classes.activeLink]: isActive,
+            })
+          }
         >
-          <div>
-            <ThemeIcon
-              size="lg"
-              className={classes.linkIcon}
-              variant="transparent"
-            >
-              {matchedRoute?.to === link.to ? link.iconFilled : link.icon}
-            </ThemeIcon>
-          </div>
-        </Link>
+          {({ isActive }) => (
+            <div>
+              <ThemeIcon
+                size="lg"
+                className={classes.linkIcon}
+                variant="transparent"
+              >
+                {isActive ? link.iconFilled : link.icon}
+              </ThemeIcon>
+            </div>
+          )}
+        </NavLink>
       </Tooltip>
     ));
 
@@ -177,37 +170,38 @@ export const DoubleNavbar: React.FC<DoubleNavbarProps> = ({
         </Text>
       )}
       {nested.links.map((link) => (
-        <Anchor
-          component={Link}
+        <NavLink
           key={link.to}
           to={link.to}
-          activeOptions={{
-            exact: true,
-          }}
-          activeProps={{ className: classes.activeNestedLink }}
-          className={classes.nestedLink}
+          className={({ isActive }) =>
+            clsx(classes.nestedLink, {
+              [classes.nestedActiveLink]: isActive,
+            })
+          }
         >
-          <Group gap={4} w="100%" align="center">
-            <ConditionalTooltip
-              active={collapsed}
-              label={link.name}
-              position="right-end"
-            >
-              <ThemeIcon
-                size="lg"
-                className={classes.linkIcon}
-                variant="transparent"
+          {({ isActive }) => (
+            <Group gap={4} w="100%" align="center">
+              <ConditionalTooltip
+                active={collapsed}
+                label={link.name}
+                position="right-end"
               >
-                {link.icon}
-              </ThemeIcon>
-            </ConditionalTooltip>
-            {!collapsed && (
-              <Text fw="500" fz="sm" className={classes.nestedName}>
-                {link.name}
-              </Text>
-            )}
-          </Group>
-        </Anchor>
+                <ThemeIcon
+                  size="lg"
+                  className={classes.linkIcon}
+                  variant="transparent"
+                >
+                  {link.icon}
+                </ThemeIcon>
+              </ConditionalTooltip>
+              {!collapsed && (
+                <Text fw="500" fz="sm" className={classes.nestedName}>
+                  {link.name}
+                </Text>
+              )}
+            </Group>
+          )}
+        </NavLink>
       ))}
     </Stack>
   ));
