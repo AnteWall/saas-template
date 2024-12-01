@@ -4,4 +4,5 @@ export const paths = {
   SignUp: "/signup",
   Settings: "/settings/account",
   SettingsSecurity: "/settings/security",
+  SettingsOrganizations: "/settings/organizations",
 };

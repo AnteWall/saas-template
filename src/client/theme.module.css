@@ -27,6 +27,26 @@
 }
 
 .paper {
-  background: var(--mantine-color-dark-8);
-  border-color: var(--mantine-color-gray-9);
+  background: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-8)
+  );
+  border-color: light-dark(
+    var(--mantine-color-gray-5),
+    var(--mantine-color-gray-9)
+  );
+}
+
+.cardSection {
+  border-color: light-dark(
+    var(--mantine-color-gray-5),
+    var(--mantine-color-gray-9)
+  );
+}
+
+.divider {
+  border-color: light-dark(
+    var(--mantine-color-gray-5),
+    var(--mantine-color-dark-5)
+  );
 }

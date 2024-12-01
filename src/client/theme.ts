@@ -1,7 +1,9 @@
 import {
   Anchor,
   Button,
+  Card,
   CSSVariablesResolver,
+  Divider,
   Input,
   MantineThemeOverride,
   MenuItem,
@@ -13,11 +15,15 @@ import classes from "./theme.module.css";
 
 export const cssVariablesResolver: CSSVariablesResolver = (theme) => ({
   variables: {},
-  light: {},
+  light: {
+    "--mantine-color-body": theme.colors.gray[3],
+    "--mantine-color-dimmed": "#5B5B66",
+  },
   dark: {
     "--mantine-color-body": theme.colors.dark[9],
     "--tooltip-bg": theme.colors.dark[9],
     "--tooltip-color": theme.colors.dark[0],
+    "--mantine-datatable-border-color": theme.colors.dark[6],
   },
 });
 
@@ -40,16 +46,27 @@ export const theme: MantineThemeOverride = {
   },
 
   components: {
-    Card: Paper.extend({
+    Divider: Divider.extend({
+      defaultProps: {
+        className: classes.divider,
+      },
+    }),
+    Card: Card.extend({
       defaultProps: {
         withBorder: true,
-        className: classes.paper,
+        classNames: {
+          root: classes.paper,
+          section: classes.cardSection,
+        },
+        shadow: "sm",
       },
     }),
     Paper: Paper.extend({
       defaultProps: {
         withBorder: true,
         className: classes.paper,
+        shadow: "sm",
+        radius: "lg",
       },
     }),
     Button: Button.extend({

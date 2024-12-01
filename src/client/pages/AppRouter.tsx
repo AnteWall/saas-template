@@ -9,6 +9,7 @@ import { Settings } from "./settings/Index";
 import { Security } from "./settings/Security";
 import { paths } from "./paths";
 import { Error404 } from "./Error404";
+import { OrganizationsPage } from "./settings/Organizations";
 
 export const AppRouter: React.FC = () => {
   return (
@@ -34,6 +35,10 @@ export const AppRouter: React.FC = () => {
         {/* Settings */}
         <Route index path={paths.Settings} element={<Settings />} />
         <Route path={paths.SettingsSecurity} element={<Security />} />
+        <Route
+          path={paths.SettingsOrganizations}
+          element={<OrganizationsPage />}
+        />
       </Route>
 
       <Route path="*" element={<Error404 />} />

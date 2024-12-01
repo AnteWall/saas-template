@@ -1,7 +1,11 @@
 .navbar {
-  border: 1px solid var(--mantine-color-gray-9);
+  border: 1px solid;
+  border-color: light-dark(
+    var(--mantine-color-gray-4),
+    var(--mantine-color-gray-9)
+  );
 }
 
 .header {
-  height: 52px;;
+  height: 52px;
 }

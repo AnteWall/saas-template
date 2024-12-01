@@ -25,6 +25,7 @@ import { ConditionalTooltip } from "../ConditionalTooltip";
 import { NavLink, useLocation } from "react-router";
 import clsx from "clsx";
 import { paths } from "@/pages/paths";
+import { ColorSchemeToggle } from "../ColorSchemeToggle";
 
 export interface NestedNavigation {
   name: string;
@@ -97,7 +98,7 @@ const links: Navigation[] = [
         links: [
           {
             name: "Organizations",
-            to: "/settings/organization",
+            to: paths.SettingsOrganizations,
             description: "Manage your organization settings",
             icon: <IconBuilding size={20} />,
           },
@@ -215,7 +216,10 @@ export const DoubleNavbar: React.FC<DoubleNavbarProps> = ({
             {mainLinks}
           </Stack>
           <div className={classes.userButton}>
-            <UserButton />
+            <Stack>
+              <ColorSchemeToggle />
+              <UserButton />
+            </Stack>
           </div>
         </div>
         <div className={classes.nestedNav} data-collapsed={collapsed}>

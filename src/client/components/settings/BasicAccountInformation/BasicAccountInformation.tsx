@@ -86,7 +86,7 @@ export const BasicAccountInformation: React.FC = () => {
               />
             </Grid.Col>
           </Grid>
-          <Divider color="dark.5" mt="md" />
+          <Divider mt="md" />
           <Grid p="lg">
             <Grid.Col span={{ base: 12, md: 6 }}>
               <TextInput
