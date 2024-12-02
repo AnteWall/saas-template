@@ -13,28 +13,46 @@ import { BrowserRouter } from "react-router";
 import { AuthProvider } from "./hooks/auth/auth";
 import { Notifications } from "@mantine/notifications";
 import { HelmetProvider } from "react-helmet-async";
+import { trpc } from "./hooks/trpc";
+import { httpBatchLink } from "@trpc/client";
 
 const queryClient = new QueryClient();
 
+const trpcClient = trpc.createClient({
+  links: [
+    httpBatchLink({
+      url: "/api/trpc",
+      fetch(url, options) {
+        return fetch(url, {
+          ...options,
+          credentials: "include",
+        });
+      },
+    }),
+  ],
+});
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-      <MantineProvider
-        withCssVariables
-        theme={theme}
-        cssVariablesResolver={cssVariablesResolver}
-        defaultColorScheme="auto"
-      >
-        <Notifications />
-        <AuthProvider>
-          <HelmetProvider>
-            <BrowserRouter>
-              <AppRouter />
-            </BrowserRouter>
-          </HelmetProvider>
-        </AuthProvider>
-      </MantineProvider>
-    </QueryClientProvider>
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <MantineProvider
+          withCssVariables
+          theme={theme}
+          cssVariablesResolver={cssVariablesResolver}
+          defaultColorScheme="auto"
+        >
+          <Notifications />
+          <AuthProvider>
+            <HelmetProvider>
+              <BrowserRouter>
+                <AppRouter />
+              </BrowserRouter>
+            </HelmetProvider>
+          </AuthProvider>
+        </MantineProvider>
+      </QueryClientProvider>
+    </trpc.Provider>
   </React.StrictMode>
 );

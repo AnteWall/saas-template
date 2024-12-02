@@ -1,17 +1,26 @@
 import React from "react";
 import classes from "./DataTable.module.css";
-import { DataTableColumn, DataTable as MDataTable } from "mantine-datatable";
+import {
+  DataTableColumn,
+  DataTable as MDataTable,
+  DataTableProps as MDataTableProps,
+} from "mantine-datatable";
 
 export interface DataTableProps<T = any> {
   columns: DataTableColumn<T>[];
   records: T[];
 }
 
-export const DataTable: React.FC<DataTableProps> = ({ columns, records }) => {
+export const DataTable = <T extends Record<string, unknown>>({
+  columns,
+  records,
+  ...otherProps
+}: DataTableProps & MDataTableProps<T>) => {
   return (
     <MDataTable
       withRowBorders
       withTableBorder
+      highlightOnHover
       borderRadius="md"
       records={records}
       columns={columns}
@@ -20,6 +29,7 @@ export const DataTable: React.FC<DataTableProps> = ({ columns, records }) => {
         header: classes.header,
         table: classes.table,
       }}
+      {...otherProps}
     />
   );
 };
