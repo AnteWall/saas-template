@@ -1,5 +1,6 @@
 import postmark from "postmark";
 import { appConfig } from "../config.ts";
+import { logger } from "../logger.ts";
 
 interface SendResetPasswordInput {
   user: {
@@ -19,11 +20,28 @@ abstract class EmailService {
 }
 
 class PostmarkEmailService implements EmailService {
-  client: postmark.ServerClient;
+  client: postmark.ServerClient | null = null;
   constructor() {
-    this.client = new postmark.ServerClient(process.env.POSTMARK_API_TOKEN!);
+    if (!process.env.POSTMARK_API_TOKEN) {
+      logger.warn(
+        "POSTMARK_API_TOKEN is not set. Email service will not work."
+      );
+    } else {
+      this.client = new postmark.ServerClient(process.env.POSTMARK_API_TOKEN!);
+    }
   }
+
+  /**
+   * Check if the client is ready to send emails
+   */
+  private isClientReady(): this is { client: postmark.ServerClient } {
+    return !!this.client;
+  }
+
   public sendResetPassword({ user, token, url }: SendResetPasswordInput) {
+    if (!this.isClientReady()) {
+      return;
+    }
     console.log("Send reset password email to", user.email, url, token);
 
     this.client.sendEmailWithTemplate({

@@ -3,11 +3,19 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prisma } from "../datasources/prisma.ts";
 import { admin, organization } from "better-auth/plugins";
 import { emailService } from "../datasources/email.ts";
+import { logger } from "../logger.ts";
+
+const betterAuthLogger = logger.child({ module: "better-auth" });
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
+  logger: {
+    log(level, message, ...args) {
+      betterAuthLogger[level](message, ...args);
+    },
+  },
   plugins: [admin(), organization()],
   emailAndPassword: {
     enabled: true,

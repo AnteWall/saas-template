@@ -21,6 +21,7 @@ export const createContext = async ({
 type Context = Awaited<ReturnType<typeof createContext>>;
 
 export const t = initTRPC.context<Context>().create();
+
 export const publicProcedure = t.procedure;
 
 export const protectedProcedure = t.procedure.use(
