@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "bun --env-file=.env --watch src/server/main.ts | pino-pretty",
+    "dev": "bun --env-file=.env --watch src/server/main.ts",
     "start": "NODE_ENV=production tsx src/server/main.ts",
     "build": "vite build",
     "migrate": "prisma migrate dev"
@@ -29,6 +29,7 @@
     "globals": "^15.14.0",
     "mantine-datatable": "^7.15.1",
     "pino": "^9.5.0",
+    "pino-http": "^10.3.0",
     "postmark": "^4.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

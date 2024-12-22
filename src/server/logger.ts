@@ -5,6 +5,15 @@ export const logger = pino({
       ? "info"
       : "debug",
   timestamp: pino.stdTimeFunctions.isoTime,
+  transport:
+    process.env.NODE_ENV === "production"
+      ? undefined
+      : {
+          target: "pino-pretty",
+          options: {
+            singleLine: true,
+          },
+        },
   formatters: {
     bindings: (bindings) => {
       return {
