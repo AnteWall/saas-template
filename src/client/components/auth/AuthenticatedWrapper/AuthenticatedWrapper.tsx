@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useAuth } from "../../../hooks/auth/auth";
+import { useAuth } from "../../../hooks/auth/useAuth";
 import { FullscreenLoader } from "../../common/FullscreenLoader";
 import { useNavigate } from "react-router";
 import { paths } from "@/pages/paths";
@@ -24,6 +24,7 @@ export const AuthenticatedWrapper: React.FC<AuthenticatedWrapperProps> = ({
     if (!isAuthenticated) {
       navigate(paths.SignIn);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isVerifying]);
 
   if (isVerifying) {

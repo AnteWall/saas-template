@@ -1,6 +1,6 @@
-import { startPostgresqlContainer } from "./global.shared";
+import { migrateDatabase } from "./global.shared";
 import { test as setup } from "@playwright/test";
 
 setup("starting database", async () => {
-  await startPostgresqlContainer();
+  await migrateDatabase("postgresql://postgres:postgres@localhost:5433/test");
 });

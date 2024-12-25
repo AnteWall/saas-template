@@ -19,14 +19,7 @@ export const auth = betterAuth({
   plugins: [admin(), organization()],
   emailAndPassword: {
     enabled: true,
-    sendResetPassword: async ({ user, url, token }, request) => {
-      console.log(
-        "Send reset password email to",
-        user.email,
-        url,
-        token,
-        request
-      );
+    sendResetPassword: async ({ user, url, token }) => {
       emailService.sendResetPassword({ user, url, token });
     },
   },

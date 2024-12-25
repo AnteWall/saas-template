@@ -11,13 +11,14 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconBrandGoogleFilled } from "@tabler/icons-react";
-import { signUp } from "../../hooks/auth/auth";
 import { useState } from "react";
 import classes from "./SignIn.module.css";
 import { Link } from "react-router";
 import { HelmetWrapper } from "@/components/common/HelmetWrapper";
+import { useAuth } from "@/hooks/auth/useAuth";
 
 const SignUp: React.FC = () => {
+  const { signUp } = useAuth();
   const [error, setError] = useState<string | undefined>(undefined);
   const form = useForm({
     mode: "uncontrolled",
@@ -37,12 +38,15 @@ const SignUp: React.FC = () => {
     email: string;
     password: string;
   }) => {
-    const res = await signUp.email({
+    const res = await signUp<"email">({
+      provider: "email",
       name: values.name,
       email: values.email,
       password: values.password,
     });
-    setError(res?.error?.message);
+    if ("error" in res) {
+      setError(res?.error?.message);
+    }
   };
 
   return (

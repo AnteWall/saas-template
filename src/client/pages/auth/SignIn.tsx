@@ -16,7 +16,6 @@ import { AuthLayoutWrapper } from "../../components/layout/AuthLayoutWrapper";
 import { signIn } from "../../hooks/auth/auth";
 import classes from "./SignIn.module.css";
 import { UseSessionKey } from "@/hooks/auth/useSession";
-import { Helmet } from "react-helmet-async";
 import { HelmetWrapper } from "@/components/common/HelmetWrapper";
 
 export default function SignIn() {

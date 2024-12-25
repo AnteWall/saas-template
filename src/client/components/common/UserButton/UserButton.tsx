@@ -1,11 +1,20 @@
 import React from "react";
-import { Avatar, Group, Menu, Text, UnstyledButton } from "@mantine/core";
-import { useAuth, useListOrganizations } from "../../../hooks/auth/auth";
+import {
+  Avatar,
+  Group,
+  Menu,
+  Text,
+  UnstyledButton,
+  Loader,
+  Progress,
+} from "@mantine/core";
+import { useListOrganizations } from "../../../hooks/auth/auth";
 import { IconCheck } from "@tabler/icons-react";
 import { toInitials } from "../../../utils/string";
 import { useSession } from "../../../hooks/auth/useSession";
 import { Link } from "react-router";
 import { paths } from "@/pages/paths";
+import { useAuth } from "@/hooks/auth/useAuth";
 
 export const UserButton: React.FC = () => {
   const { logout } = useAuth();
@@ -37,7 +46,11 @@ export const UserButton: React.FC = () => {
       <Menu position="right-end">
         <Menu.Target>
           <Avatar radius="sm" src={data?.data?.user.image}>
-            {toInitials(data?.data?.user.name)}
+            {isPending ? (
+              <Loader size="xs" />
+            ) : (
+              toInitials(data?.data?.user.name)
+            )}
           </Avatar>
         </Menu.Target>
         <Menu.Dropdown>
@@ -50,6 +63,12 @@ export const UserButton: React.FC = () => {
             </Text>
           </Menu.Item>
           <Menu.Divider />
+          {organizationsPending && (
+            <Menu.Item>
+              <Progress value={100} animated />
+            </Menu.Item>
+          )}
+
           {organizationLinks}
           <Menu.Divider />
           <Menu.Item>Invite & manage members</Menu.Item>

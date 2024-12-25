@@ -16,6 +16,6 @@ test.describe("Signup", () => {
     await page.getByLabel("Password").fill("password12345");
 
     await page.getByRole("button", { name: "Sign up" }).click();
-    //await expect(page).toHaveURL("/");
+    await expect(page).toHaveURL("/");
   });
 });

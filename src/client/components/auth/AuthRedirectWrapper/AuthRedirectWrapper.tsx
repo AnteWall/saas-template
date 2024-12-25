@@ -1,5 +1,5 @@
 import { FullscreenLoader } from "@/components/common/FullscreenLoader";
-import { useAuth } from "@/hooks/auth/auth";
+import { useAuth } from "@/hooks/auth/useAuth";
 import { paths } from "@/pages/paths";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -25,6 +25,7 @@ export const AuthRedirectWrapper: React.FC<AuthRedirectWrapperProps> = ({
     if (isAuthenticated) {
       navigate(paths.Home);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, isVerifying]);
 
   if (isVerifying) {
