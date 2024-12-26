@@ -1,15 +1,16 @@
 import { Routes, Route, Outlet } from "react-router";
 import { Home } from "./Home";
 import { AppLayout } from "../components/layout/AppLayout";
-import SignIn from "./auth/SignIn";
+import { SignIn } from "./auth/SignIn";
 import SignUp from "./auth/SignUp";
 import { AuthenticatedWrapper } from "@/components/auth/AuthenticatedWrapper";
 import { AuthRedirectWrapper } from "@/components/auth/AuthRedirectWrapper";
 import { Settings } from "./settings/Index";
 import { Security } from "./settings/Security";
-import { paths } from "./paths";
+import { paths, rawPath } from "./paths";
 import { Error404 } from "./Error404";
-import { OrganizationsPage } from "./settings/Organizations";
+import { OrganizationsPage } from "./settings/organizations/Organizations";
+import { OrganizationSettingsPage } from "./settings/organizations/OrganizationSettingsPage";
 
 export const AppRouter: React.FC = () => {
   return (
@@ -38,6 +39,10 @@ export const AppRouter: React.FC = () => {
         <Route
           path={paths.SettingsOrganizations}
           element={<OrganizationsPage />}
+        />
+        <Route
+          path={rawPath(paths.SettingsOrganization)}
+          element={<OrganizationSettingsPage />}
         />
       </Route>
 

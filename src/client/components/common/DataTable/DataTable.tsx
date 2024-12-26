@@ -1,23 +1,26 @@
-import React from "react";
+import type { JSX } from "react/jsx-runtime";
 import classes from "./DataTable.module.css";
 import {
-  DataTableColumn,
+  type DataTableColumn,
   DataTable as MDataTable,
-  DataTableProps as MDataTableProps,
+  type DataTableProps as MDataTableProps,
 } from "mantine-datatable";
 
-export interface DataTableProps<T = any> {
+export interface DataTableProps<T> {
   columns: DataTableColumn<T>[];
   records: T[];
+  error?: Error | null;
 }
 
 export const DataTable = <T extends Record<string, unknown>>({
   columns,
   records,
+  onRowClick,
   ...otherProps
-}: DataTableProps & MDataTableProps<T>) => {
+}: DataTableProps<T> & MDataTableProps<T>): JSX.Element => {
   return (
     <MDataTable
+      onRowClick={onRowClick}
       withRowBorders
       withTableBorder
       highlightOnHover

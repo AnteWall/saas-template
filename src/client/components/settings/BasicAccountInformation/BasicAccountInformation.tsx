@@ -22,13 +22,13 @@ export const BasicAccountInformation: React.FC = () => {
 
   const form = useForm({
     initialValues: {
-      name: data?.data?.user.name || "",
-      email: data?.data?.user.email || "",
+      name: data?.data?.user.name ?? "",
+      email: data?.data?.user.email ?? "",
     },
   });
 
   useEffect(() => {
-    if (data && data.data) {
+    if (data?.data) {
       form.setFieldValue("name", data.data.user.name);
       form.setFieldValue("email", data.data.user.email);
     }
@@ -46,21 +46,21 @@ export const BasicAccountInformation: React.FC = () => {
     let res = await updateUser({
       name,
     });
-    if (res?.error) {
-      setError(res?.error?.message);
+    if (res.error) {
+      setError(res.error.message);
       setLoading(false);
       return;
     }
     if (email != data?.data?.user.email) {
       res = await changeEmail({ newEmail: email });
     }
-    setError(res?.error?.message);
+    setError(res.error?.message);
     setLoading(false);
   };
 
   return (
     <>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
+      <form onSubmit={form.onSubmit((v) => void handleSubmit(v))}>
         <Paper>
           <Grid px="lg" py="md">
             <Grid.Col span={{ base: 12, md: 4 }}>

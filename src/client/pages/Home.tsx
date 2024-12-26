@@ -1,5 +1,4 @@
-import { Button, Container, Title } from "@mantine/core";
-import { Link } from "react-router";
+import { Container, Title } from "@mantine/core";
 
 export const Home: React.FC = () => {
   return (

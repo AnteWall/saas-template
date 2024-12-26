@@ -1,2 +1,2 @@
-export { AuthRedirectWrapper } from './AuthRedirectWrapper';
-export type { AuthRedirectWrapperProps } from './AuthRedirectWrapper';
+export { AuthRedirectWrapper } from "./AuthRedirectWrapper";
+export type { AuthRedirectWrapperProps } from "./AuthRedirectWrapper";

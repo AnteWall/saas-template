@@ -29,9 +29,9 @@ export const ColorSchemeToggle: React.FC<ColorSchemeToggleProps> = ({
     <Group justify="center">
       <Tooltip label="Switch color scheme" position="right">
         <ActionIcon
-          onClick={() =>
-            setColorScheme(computedColorScheme === "light" ? "dark" : "light")
-          }
+          onClick={() => {
+            setColorScheme(computedColorScheme === "light" ? "dark" : "light");
+          }}
           variant="subtle"
           size={size}
           aria-label="Toggle color scheme"

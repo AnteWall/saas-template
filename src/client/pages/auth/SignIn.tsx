@@ -17,8 +17,9 @@ import { signIn } from "../../hooks/auth/auth";
 import classes from "./SignIn.module.css";
 import { UseSessionKey } from "@/hooks/auth/useSession";
 import { HelmetWrapper } from "@/components/common/HelmetWrapper";
+import React from "react";
 
-export default function SignIn() {
+export const SignIn: React.FC = () => {
   const queryClient = useQueryClient();
 
   const form = useForm({
@@ -49,14 +50,15 @@ export default function SignIn() {
         }
       >
         <form
-          onSubmit={form.onSubmit((values) =>
-            signIn.email(values, {
-              onSuccess: () => {
-                queryClient.invalidateQueries({
-                  queryKey: [UseSessionKey],
-                });
-              },
-            })
+          onSubmit={form.onSubmit(
+            (values) =>
+              void signIn.email(values, {
+                onSuccess: () => {
+                  void queryClient.invalidateQueries({
+                    queryKey: [UseSessionKey],
+                  });
+                },
+              })
           )}
         >
           <Stack>
@@ -93,4 +95,4 @@ export default function SignIn() {
       </AuthLayoutWrapper>
     </>
   );
-}
+};

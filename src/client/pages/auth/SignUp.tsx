@@ -45,7 +45,7 @@ const SignUp: React.FC = () => {
       password: values.password,
     });
     if ("error" in res) {
-      setError(res?.error?.message);
+      setError(res.error?.message);
     }
   };
 

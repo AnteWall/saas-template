@@ -41,7 +41,7 @@ const createServer = async () => {
     );
   });
 
-  bind(app, server);
+  await bind(app, server);
 };
 
 await createServer();
