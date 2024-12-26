@@ -6,7 +6,7 @@ export const OrganizationsPage: React.FC = () => {
   return (
     <>
       <HelmetWrapper title="Organizations" />
-      <Container>
+      <Container mt="60">
         <Group mb="xl" justify="space-between">
           <Title>Organizations</Title>
           <Button>Create organization</Button>

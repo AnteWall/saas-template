@@ -86,7 +86,6 @@ export const OrganizationsList: React.FC = () => {
   );
 
   const onRowClick = (record: Organization) => {
-    console.log("record", record);
     void navigate(
       paths.SettingsOrganization({
         id: record.id,
