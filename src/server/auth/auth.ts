@@ -4,6 +4,7 @@ import { prisma } from "../datasources/prisma.ts";
 import { admin, organization } from "better-auth/plugins";
 import { emailService } from "../datasources/email.ts";
 import { logger } from "../logger.ts";
+import { createId } from "@paralleldrive/cuid2";
 
 const betterAuthLogger = logger.child({ module: "better-auth" });
 
@@ -31,7 +32,7 @@ export const auth = betterAuth({
           await prisma.organization.create({
             data: {
               createdAt: new Date(),
-              id: generateId(),
+              id: createId(),
               name: "Personal",
               Member: {
                 create: {

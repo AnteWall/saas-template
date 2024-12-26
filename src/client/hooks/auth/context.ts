@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { Context, createContext } from "react";
 import { signUp as _signUp } from "./auth";
 export type ProvidersMethod = typeof _signUp;
 export type Providers = keyof ProvidersMethod;
@@ -10,7 +10,7 @@ export type ProviderReturnType =
   | {
       token: string;
     }
-  | { error: { message: string } };
+  | { error?: { message?: string } };
 
 export interface AuthProviderContext {
   isAuthenticated: boolean;
@@ -30,4 +30,5 @@ export interface AuthProviderContext {
   };
 }
 
-export const AuthContext = createContext<AuthProviderContext | null>(null);
+export const AuthContext: Context<AuthProviderContext | null> =
+  createContext<AuthProviderContext | null>(null);

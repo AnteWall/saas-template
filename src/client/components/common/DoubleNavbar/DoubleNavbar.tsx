@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./DoubleNavbar.module.css";
 import {
   ActionIcon,
-  Anchor,
   Divider,
   Group,
   Stack,
@@ -180,7 +179,7 @@ export const DoubleNavbar: React.FC<DoubleNavbarProps> = ({
             })
           }
         >
-          {({ isActive }) => (
+          {() => (
             <Group gap={4} w="100%" align="center">
               <ConditionalTooltip
                 active={collapsed}

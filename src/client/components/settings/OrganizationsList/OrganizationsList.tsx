@@ -1,27 +1,62 @@
 import React, { useMemo } from "react";
 import classes from "./OrganizationsList.module.css";
 import { DataTable } from "@/components/common/DataTable";
-import { DataTableColumn } from "mantine-datatable";
+import type { DataTableColumn } from "mantine-datatable";
 import { useListOrganizations } from "@/hooks/auth/useListOrganizations";
-import { ActionIcon, Text, Box, Avatar, Group } from "@mantine/core";
+import {
+  ActionIcon,
+  Text,
+  Box,
+  Stack,
+  Avatar,
+  Group,
+  Skeleton,
+} from "@mantine/core";
 import { IconDots } from "@tabler/icons-react";
 import { trpc } from "@/hooks/trpc";
+import { useNavigate } from "react-router";
+import { paths } from "@/pages/paths";
 
-type Organization = {
+interface Organization {
   id: string;
   createdAt: Date;
   name: string;
-  slug: string;
-  metadata?: any;
+  slug?: string | null;
+  metadata?: unknown;
   logo?: string | null | undefined;
+}
+
+const OrganizationStats: React.FC<{
+  orgnaizationName: string;
+  organizationId: string;
+  logo?: string | null;
+}> = ({ logo, organizationId, orgnaizationName }) => {
+  const { data, isPending } = trpc.getOrganizationMembers.useQuery({
+    organizationId,
+  });
+
+  return (
+    <Box py="xs">
+      <Group>
+        <Avatar src={logo} size="32" radius="sm" />
+        <Stack gap={4}>
+          <Text size="sm" fw="bold">
+            {orgnaizationName}
+          </Text>
+          <Skeleton h={17} visible={isPending}>
+            <Text size="xs" c="dimmed">
+              {data?.members.length ?? "-"} members
+            </Text>
+          </Skeleton>
+        </Stack>
+      </Group>
+    </Box>
+  );
 };
 
-export interface OrganizationsListProps {}
-
-export const OrganizationsList: React.FC<OrganizationsListProps> = ({}) => {
+export const OrganizationsList: React.FC = () => {
   const { data, isPending, error } = useListOrganizations();
-
-  const { data: membersData } = trpc.getOrganizationMembers.useQuery();
+  const navigate = useNavigate();
 
   const columns = useMemo(
     () =>
@@ -30,20 +65,17 @@ export const OrganizationsList: React.FC<OrganizationsListProps> = ({}) => {
           accessor: "name",
           title: "Name",
           render: (row) => (
-            <Box py="xs">
-              <Group>
-                <Avatar src={row.logo} size="32" radius="sm" />
-                <Text size="sm" fw="bold">
-                  {row.name}
-                </Text>
-              </Group>
-            </Box>
+            <OrganizationStats
+              orgnaizationName={row.name}
+              logo={row.logo}
+              organizationId={row.id}
+            />
           ),
         },
         {
           textAlign: "right",
           accessor: "id",
-          render: (row) => (
+          render: () => (
             <ActionIcon variant="subtle">
               <IconDots size={16} />
             </ActionIcon>
@@ -53,9 +85,27 @@ export const OrganizationsList: React.FC<OrganizationsListProps> = ({}) => {
     []
   );
 
+  const onRowClick = (record: Organization) => {
+    console.log("record", record);
+    void navigate(
+      paths.SettingsOrganization({
+        id: record.id,
+      })
+    );
+  };
+
   return (
     <div className={classes.root}>
-      <DataTable noHeader columns={columns} records={data || []} />
+      <DataTable
+        onRowClick={({ record }) => {
+          onRowClick(record);
+        }}
+        fetching={isPending}
+        error={error}
+        noHeader
+        columns={columns}
+        records={data ?? []}
+      />
     </div>
   );
 };

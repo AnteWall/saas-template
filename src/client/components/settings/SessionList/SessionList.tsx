@@ -36,7 +36,7 @@ export const SessionList: React.FC = () => {
   }) => {
     setRevokeSessionId(session.id);
     await mutateAsync(session.token);
-    refetch();
+    void refetch();
   };
 
   const sessionsItems = (sessions?.data ?? []).map((session) => {
@@ -57,18 +57,20 @@ export const SessionList: React.FC = () => {
           </Stack>
           <Stack gap={4}>
             <Button
-              onClick={() => handleRevokeSession(session)}
+              onClick={() => {
+                void handleRevokeSession(session);
+              }}
               variant="subtle"
               loading={isRevokingSession}
               disabled={isActive}
             >
               {isActive ? "Your current session" : "Revoke session"}
             </Button>
-            {(errorRevoke || dataRevoke?.error) &&
+            {(errorRevoke ?? dataRevoke?.error) &&
               session.id === revokeSessionId && (
                 <Text size="sm" c="red">
-                  {errorRevoke?.message ||
-                    dataRevoke?.error?.message ||
+                  {errorRevoke?.message ??
+                    dataRevoke?.error?.message ??
                     "Internal server error"}
                 </Text>
               )}
@@ -85,7 +87,7 @@ export const SessionList: React.FC = () => {
       {error && (
         <Card.Section p="md">
           <Text size="sm" c="red">
-            {error?.message || "Internal server error"}
+            {error.message || "Internal server error"}
           </Text>
         </Card.Section>
       )}

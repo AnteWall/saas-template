@@ -16,7 +16,7 @@ abstract class EmailService {
     user,
     token,
     url,
-  }: SendResetPasswordInput): void;
+  }: SendResetPasswordInput): Promise<void>;
 }
 
 class PostmarkEmailService implements EmailService {
@@ -38,13 +38,13 @@ class PostmarkEmailService implements EmailService {
     return !!this.client;
   }
 
-  public sendResetPassword({ user, token, url }: SendResetPasswordInput) {
+  public async sendResetPassword({ user, token, url }: SendResetPasswordInput) {
     if (!this.isClientReady()) {
       return;
     }
     console.log("Send reset password email to", user.email, url, token);
 
-    this.client.sendEmailWithTemplate({
+    await this.client.sendEmailWithTemplate({
       From: appConfig.email.fromEmail,
       To: user.email,
       TemplateAlias: appConfig.email.postmark.resetPasswordTemplateId,
@@ -56,4 +56,4 @@ class PostmarkEmailService implements EmailService {
   }
 }
 
-export const emailService = new PostmarkEmailService();
+export const emailService: PostmarkEmailService = new PostmarkEmailService();

@@ -1,2 +1,2 @@
-export { ConditionalTooltip } from './ConditionalTooltip';
-export type { ConditionalTooltipProps } from './ConditionalTooltip';
+export { ConditionalTooltip } from "./ConditionalTooltip";
+export type { ConditionalTooltipProps } from "./ConditionalTooltip";
