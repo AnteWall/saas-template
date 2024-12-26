@@ -42,7 +42,6 @@ class PostmarkEmailService implements EmailService {
     if (!this.isClientReady()) {
       return;
     }
-    console.log("Send reset password email to", user.email, url, token);
 
     await this.client.sendEmailWithTemplate({
       From: appConfig.email.fromEmail,

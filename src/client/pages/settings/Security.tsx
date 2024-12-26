@@ -2,12 +2,14 @@ import { Title, Container } from "@mantine/core";
 import { SplitSection } from "../../components/common/SplitSection";
 import { SessionList } from "../../components/settings/SessionList";
 import React from "react";
+import { HelmetWrapper } from "@/components/common/HelmetWrapper";
 
 export const Security: React.FC = () => {
   return (
     <>
-      <Container>
-        <Title>Account settings</Title>
+      <HelmetWrapper title="Security" />
+      <Container mt="60">
+        <Title>Security</Title>
         <SplitSection
           pt="xl"
           title="Active sessions"

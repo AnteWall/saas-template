@@ -1,7 +1,6 @@
 import { execSync } from "child_process";
 
 export const migrateDatabase = async (connectionUri: string) => {
-  console.log("Migrating database", connectionUri);
   execSync("bun prisma migrate deploy", {
     env: {
       ...process.env,
@@ -11,7 +10,6 @@ export const migrateDatabase = async (connectionUri: string) => {
 };
 
 export const resetDatabase = async (connectionUri: string) => {
-  console.log("Resetting database", connectionUri);
   if (process.env.NODE_ENV?.includes("prod")) {
     throw new Error(
       "Cannot reset database in production, please use a test environment"

@@ -53,6 +53,10 @@ export const SignIn: React.FC = () => {
           onSubmit={form.onSubmit(
             (values) =>
               void signIn.email(values, {
+                onError: (error) => {
+                  console.warn(error);
+                  form.setErrors({ password: error.error.message });
+                },
                 onSuccess: () => {
                   void queryClient.invalidateQueries({
                     queryKey: [UseSessionKey],

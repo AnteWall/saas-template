@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./BreadcrumbsHeader.module.css";
 import { Anchor, Breadcrumbs, Group } from "@mantine/core";
 import { Link } from "react-router";
+import { IconChevronRight } from "@tabler/icons-react";
 
 export interface BreadcrumbItem {
   label: string;
@@ -18,15 +19,24 @@ export const BreadcrumbsHeader: React.FC<BreadcrumbsHeaderProps> = ({
 }) => {
   return (
     <div className={classes.root}>
-      <Breadcrumbs>
+      <Breadcrumbs
+        p="md"
+        separator={
+          <IconChevronRight
+            size={14}
+            stroke={4}
+            className={classes.breadcrumbs}
+          />
+        }
+      >
         {breadcrumbs.map((item, index) => {
           return (
-            <Group>
+            <Group key={index}>
               {item.icon}
               <Anchor
                 fz="sm"
                 renderRoot={(props) => <Link {...props} to={item.to} />}
-                key={index}
+                className={classes.breadcrumb}
               >
                 {item.label}
               </Anchor>

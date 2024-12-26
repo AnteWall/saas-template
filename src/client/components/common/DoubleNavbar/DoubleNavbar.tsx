@@ -125,7 +125,6 @@ export const DoubleNavbar: React.FC<DoubleNavbarProps> = ({
   const location = useLocation();
 
   const matchedRoute = links.find((link) => {
-    console.log(link.to, location.pathname);
     if (link.to === "/") {
       return location.pathname === "/";
     }

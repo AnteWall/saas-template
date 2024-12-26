@@ -48,7 +48,7 @@ export const SessionList: React.FC = () => {
             {getUserAgentIcon(session.userAgent)}
           </ThemeIcon>
           <Stack flex={1} gap={4}>
-            <Text fw="bold" size="sm">
+            <Text fw="bold" size="sm" tt="capitalize">
               {formatRelative(new Date(session.createdAt), new Date())}
             </Text>
             <Text c="dimmed" fz="xs">

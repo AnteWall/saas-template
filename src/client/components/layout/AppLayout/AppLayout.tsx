@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./AppLayout.module.css";
-import { AppShell, Burger, useMatches } from "@mantine/core";
+import { AppShell, Box, Burger, useMatches } from "@mantine/core";
 import { DoubleNavbar } from "../../common/DoubleNavbar";
 import { useDisclosure } from "@mantine/hooks";
 import { Outlet } from "react-router";
@@ -24,6 +24,9 @@ export const AppLayout: React.FC = () => {
         width: opened ? 270 : 131,
         collapsed: { mobile: !opened },
       }}
+      header={{
+        height: 0,
+      }}
       classNames={{
         navbar: classes.navbar,
       }}
@@ -32,7 +35,7 @@ export const AppLayout: React.FC = () => {
         <DoubleNavbar collapsed={!opened} onCollapse={toggle} />
       </AppShell.Navbar>
       <AppShell.Main>
-        <div className={classes.header}>
+        <Box hiddenFrom="md" className={classes.header}>
           <Burger
             hiddenFrom="sm"
             opened={opened}
@@ -41,7 +44,7 @@ export const AppLayout: React.FC = () => {
             py="xl"
             px="md"
           />
-        </div>
+        </Box>
         <Outlet />
       </AppShell.Main>
     </AppShell>
