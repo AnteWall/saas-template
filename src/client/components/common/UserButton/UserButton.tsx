@@ -8,7 +8,7 @@ import {
   Loader,
   Progress,
 } from "@mantine/core";
-import { useListOrganizations } from "../../../hooks/auth/auth";
+import { useListOrganizations } from "../../../hooks/auth/useListOrganizations";
 import { IconCheck } from "@tabler/icons-react";
 import { toInitials } from "../../../utils/string";
 import { useSession } from "../../../hooks/auth/useSession";

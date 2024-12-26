@@ -20,6 +20,10 @@ export const {
   forgetPassword,
   getSession,
   listSessions,
-  $Infer,
   revokeSession,
 } = authClient;
+
+export type Session = typeof authClient.$Infer.Session;
+export type Organization = typeof authClient.$Infer.Organization;
+export type Member = typeof authClient.$Infer.Member;
+export type Invitation = typeof authClient.$Infer.Invitation;
