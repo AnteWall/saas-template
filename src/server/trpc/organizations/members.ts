@@ -27,7 +27,7 @@ export const getOrganizationMembers: TRPCQueryProcedure<{
     const org = await prisma.organization.findUnique({
       where: {
         id: input.organizationId,
-        Member: {
+        members: {
           some: {
             userId: ctx.auth.user.id,
           },

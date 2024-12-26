@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id            String       @id
+  id            String    @id
   name          String
   email         String
   emailVerified Boolean
@@ -25,10 +25,11 @@ model User {
   banned        Boolean?
   banReason     String?
   banExpires    DateTime?
-  Session       Session[]
-  Account       Account[]
-  Member        Member[]
-  Invitation    Invitation[]
+
+  sessions    Session[]
+  accounts    Account[]
+  members     Member[]
+  invitations Invitation[]
 
   @@unique([email])
   @@map("user")
@@ -82,14 +83,15 @@ model Verification {
 }
 
 model Organization {
-  id         String       @id
-  name       String
-  slug       String?
-  logo       String?
-  createdAt  DateTime
-  metadata   String?
-  Member     Member[]
-  Invitation Invitation[]
+  id        String   @id
+  name      String
+  slug      String?
+  logo      String?
+  createdAt DateTime
+  metadata  String?
+
+  members     Member[]
+  invitations Invitation[]
 
   @@unique([slug])
   @@map("organization")

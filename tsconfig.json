@@ -18,8 +18,8 @@
     "jsx": "react-jsx",
     // Best practices
     "noFallthroughCasesInSwitch": true,
-    "strictNullChecks": true,
     "baseUrl": ".",
+    "declaration": false,
     "paths": {
       "@/*": ["src/client/*"]
     }

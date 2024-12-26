@@ -34,7 +34,7 @@ export const auth = betterAuth({
               createdAt: new Date(),
               id: createId(),
               name: "Personal",
-              Member: {
+              members: {
                 create: {
                   role: "owner",
                   userId: user.id,
