@@ -8,6 +8,7 @@
     "start": "NODE_ENV=production tsx src/server/main.ts",
     "build": "vite build",
     "migrate": "prisma migrate dev",
+    "generate": "prisma generate",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src"
   },
