@@ -40,7 +40,7 @@
         "@eslint/js": "9.17.0",
         "@playwright/test": "1.49.1",
         "@tanstack/eslint-plugin-query": "5.62.9",
-        "@tanstack/router-devtools": "1.92.3",
+        "@tanstack/router-devtools": "1.92.6",
         "@tanstack/router-plugin": "1.91.1",
         "@types/bun": "1.1.14",
         "@types/cors": "2.8.17",
@@ -364,7 +364,7 @@
 
     "@tanstack/react-store": ["@tanstack/react-store@0.6.1", "", { "dependencies": { "@tanstack/store": "0.6.0", "use-sync-external-store": "^1.2.2" }, "peerDependencies": { "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0" } }, "sha512-6gOopOpPp1cAXkEyTEv6tMbAywwFunvIdCKN/SpEiButUayjXU+Q5Sp5Y3hREN3VMR4OA5+RI5SPhhJoqP9e4w=="],
 
-    "@tanstack/router-devtools": ["@tanstack/router-devtools@1.92.3", "", { "dependencies": { "clsx": "^2.1.1", "goober": "^2.1.16" }, "peerDependencies": { "@tanstack/react-router": "^1.92.3", "react": ">=18", "react-dom": ">=18" } }, "sha512-UuuUfhICXqpWgH/ATRJE8lZQ/ORGS8J6T6rvF3F04dL91li4vyPXb4XNtGGrGyurVIx2kRXw6WSfshJCQOmjWw=="],
+    "@tanstack/router-devtools": ["@tanstack/router-devtools@1.92.6", "", { "dependencies": { "clsx": "^2.1.1", "goober": "^2.1.16" }, "peerDependencies": { "@tanstack/react-router": "^1.92.6", "react": ">=18", "react-dom": ">=18" } }, "sha512-eBYt0aiPK62PvtDGvaLg05G5gnSYlHM2Xxt307yf2hsWqsQPcoZFPBbALQ2LLgv7643UUeyJ8+2yanEJsRLhvg=="],
 
     "@tanstack/router-generator": ["@tanstack/router-generator@1.87.7", "", { "dependencies": { "@tanstack/virtual-file-routes": "^1.87.6", "prettier": "^3.4.2", "tsx": "^4.19.2", "zod": "^3.23.8" } }, "sha512-w9Px1C6DM0YNVXvu1VjUuZ5el0ykOeofEmEZBW83VUTzvCXFpcjPCHncU9FO9uXup8NFIxNfGz+xpwf93GoFnQ=="],
 
