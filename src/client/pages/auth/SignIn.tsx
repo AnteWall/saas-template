@@ -54,7 +54,6 @@ export const SignIn: React.FC = () => {
             (values) =>
               void signIn.email(values, {
                 onError: (error) => {
-                  console.warn(error);
                   form.setErrors({ password: error.error.message });
                 },
                 onSuccess: () => {
@@ -85,6 +84,12 @@ export const SignIn: React.FC = () => {
             <Button size="lg" type="submit" fullWidth radius="lg">
               Sign in
             </Button>
+            <Text fz="xs" c="dimmed">
+              Forgot your password?{" "}
+              <Anchor fz="xs" component={Link} to="/forgot-password">
+                Click here
+              </Anchor>
+            </Text>
             <Divider label="or" />
             <Button
               leftSection={<IconBrandGoogleFilled />}

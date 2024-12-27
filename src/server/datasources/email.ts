@@ -35,23 +35,33 @@ class PostmarkEmailService implements EmailService {
    * Check if the client is ready to send emails
    */
   private isClientReady(): this is { client: postmark.ServerClient } {
+    if (!this.client) {
+      logger.warn("Email client is not ready");
+    }
     return !!this.client;
   }
 
-  public async sendResetPassword({ user, token, url }: SendResetPasswordInput) {
+  public async sendResetPassword({ user, url }: SendResetPasswordInput) {
     if (!this.isClientReady()) {
       return;
     }
-
-    await this.client.sendEmailWithTemplate({
+    const res = await this.client.sendEmailWithTemplate({
       From: appConfig.email.fromEmail,
       To: user.email,
       TemplateAlias: appConfig.email.postmark.resetPasswordTemplateId,
       TemplateModel: {
         name: user.name,
         action_url: url,
+        product_url: "product_url_Value",
+        product_name: "product_name_Value",
+        company_name: "company_name_Value",
+        company_address: "company_address_Value",
+        operating_system: "operating_system_Value",
+        browser_name: "browser_name_Value",
+        support_url: "support_url_Value",
       },
     });
+    logger.info(res, "Email sent");
   }
 }
 

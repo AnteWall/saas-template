@@ -1,6 +1,6 @@
 export const appConfig = {
   email: {
-    fromEmail: "info@example.com",
+    fromEmail: "info@integrati.se",
     postmark: {
       resetPasswordTemplateId: "password-reset",
     },
