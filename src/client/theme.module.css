@@ -19,10 +19,19 @@
   }
 }
 
+.menuRoot {
+  background: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
+}
+
 .menuItem {
-  background: var(--mantine-color-dark-7);
   @mixin hover {
-    background: var(--mantine-color-dark-6);
+    background: light-dark(
+      var(--mantine-color-gray-1),
+      var(--mantine-color-dark-8)
+    );
   }
 }
 

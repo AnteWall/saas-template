@@ -6,7 +6,7 @@ import {
   Divider,
   Input,
   MantineThemeOverride,
-  MenuItem,
+  Menu,
   Paper,
   PasswordInput,
   TextInput,
@@ -106,9 +106,10 @@ export const theme: MantineThemeOverride = {
         },
       },
     }),
-    MenuItem: MenuItem.extend({
+    Menu: Menu.extend({
       defaultProps: {
         classNames: {
+          dropdown: classes.menuRoot,
           item: classes.menuItem,
         },
       },
