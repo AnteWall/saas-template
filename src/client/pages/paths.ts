@@ -3,6 +3,7 @@ export const paths = {
   SignIn: "/signin",
   SignUp: "/signup",
   ForgotPassword: "/forgot-password",
+  ResetPassword: "/reset-password",
   Settings: "/settings/account",
   SettingsSecurity: "/settings/security",
   SettingsOrganizations: "/settings/organizations",
@@ -21,7 +22,7 @@ const replaceParams = (path: string, params: Record<string, string>) => {
 };
 
 export const rawPath = (
-  path: (opts: Record<string, string>) => string
+  path: (opts: Record<string, string>) => string,
 ): string => {
   const p = path({});
   return p;

@@ -12,6 +12,7 @@ import { Error404 } from "./Error404";
 import { OrganizationsPage } from "./settings/organizations/Organizations";
 import { OrganizationSettingsPage } from "./settings/organizations/OrganizationSettingsPage";
 import { ForgotPassword } from "./auth/ForgotPassword";
+import { ResetPassword } from "./auth/reset-password";
 
 export const AppRouter: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ export const AppRouter: React.FC = () => {
         <Route path={paths.SignIn} element={<SignIn />} />
         <Route path={paths.SignUp} element={<SignUp />} />
         <Route path={paths.ForgotPassword} element={<ForgotPassword />} />
+        <Route path={paths.ResetPassword} element={<ResetPassword />} />
       </Route>
       <Route
         element={
