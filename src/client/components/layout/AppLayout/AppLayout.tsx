@@ -1,52 +1,55 @@
 import React from "react";
-import classes from "./AppLayout.module.css";
-import { AppShell, Box, Burger, useMatches } from "@mantine/core";
-import { DoubleNavbar } from "../../common/DoubleNavbar";
-import { useDisclosure } from "@mantine/hooks";
 import { Outlet } from "react-router";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@radix-ui/react-separator";
 
 export const AppLayout: React.FC = () => {
-  const matches = useMatches(
-    {
-      xs: false,
-      sm: false,
-      md: true,
-      lg: true,
-      xl: true,
-    },
-    { getInitialValueInEffect: false }
-  );
-  const [opened, { toggle }] = useDisclosure(matches);
   return (
-    <AppShell
-      navbar={{
-        breakpoint: "sm",
-        width: opened ? 270 : 131,
-        collapsed: { mobile: !opened },
-      }}
-      header={{
-        height: 0,
-      }}
-      classNames={{
-        navbar: classes.navbar,
-      }}
-    >
-      <AppShell.Navbar>
-        <DoubleNavbar collapsed={!opened} onCollapse={toggle} />
-      </AppShell.Navbar>
-      <AppShell.Main>
-        <Box hiddenFrom="md" className={classes.header}>
-          <Burger
-            hiddenFrom="sm"
-            opened={opened}
-            onClick={toggle}
-            size="sm"
-            py="xl"
-            px="md"
-          />
-        </Box>
+    <SidebarProvider>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+          <div className="flex items-center gap-2 px-4">
+            <SidebarTrigger className="-ml-1" />
+            <Separator orientation="vertical" className="mr-2 h-4" />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem className="hidden md:block">
+                  <BreadcrumbLink href="#">
+                    Building Your Application
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+            <div className="aspect-video rounded-xl bg-muted/50" />
+            <div className="aspect-video rounded-xl bg-muted/50" />
+            <div className="aspect-video rounded-xl bg-muted/50" />
+          </div>
+          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+        </div>
         <Outlet />
-      </AppShell.Main>
-    </AppShell>
+      </SidebarInset>
+    </SidebarProvider>
   );
 };
