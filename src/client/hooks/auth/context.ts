@@ -10,14 +10,14 @@ export type ProviderReturnType =
   | {
       token: string;
     }
-  | { error?: { message?: string } };
+  | { error?: { message?: string; code?: string } };
 
 export interface AuthProviderContext {
   isAuthenticated: boolean;
   isVerifying: boolean;
   logout: (options?: { onSuccess?: () => void }) => void;
   signUp: <P extends Providers>(
-    args: { provider: P } & ProviderArgs<P>
+    args: { provider: P } & ProviderArgs<P>,
   ) => Promise<ProviderReturnType>;
   user?: {
     id: string;

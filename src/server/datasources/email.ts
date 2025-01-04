@@ -24,7 +24,7 @@ class PostmarkEmailService implements EmailService {
   constructor() {
     if (!process.env.POSTMARK_API_TOKEN) {
       logger.warn(
-        "POSTMARK_API_TOKEN is not set. Email service will not work."
+        "POSTMARK_API_TOKEN is not set. Email service will not work.",
       );
     } else {
       this.client = new postmark.ServerClient(process.env.POSTMARK_API_TOKEN!);
@@ -61,7 +61,7 @@ class PostmarkEmailService implements EmailService {
         support_url: "support_url_Value",
       },
     });
-    logger.info(res, "Email sent");
+    logger.info(res, "Reset password email sent");
   }
 }
 

@@ -1,86 +1,121 @@
 import { HelmetWrapper } from "@/components/common/HelmetWrapper";
 import { AuthLayoutWrapper } from "@/components/layout/AuthLayoutWrapper";
-import {
-  Anchor,
-  Text,
-  Button,
-  Group,
-  Stack,
-  TextInput,
-  Alert,
-} from "@mantine/core";
-import { useForm } from "@mantine/form";
-import classes from "./ForgotPassword.module.css";
-import { Link } from "react-router";
+import { Stack } from "@mantine/core";
 import { useForgotPasswordMutation } from "@/hooks/auth/useForgotPasswordMutation";
-import { IconInfoCircle } from "@tabler/icons-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { LoaderButton } from "@/components/ui/button-loader";
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+  Form,
+} from "@/components/ui/form";
+import { paths } from "../paths";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router";
+import { AlertInfo } from "@/components/ui/alert";
+import { Input } from "@/components/ui/input";
+import { useEffect } from "react";
+
+const formSchema = z.object({
+  email: z.string().email(),
+});
 
 export const ForgotPassword: React.FC = () => {
   const { mutate, error, isSuccess, isPending } = useForgotPasswordMutation();
 
-  const form = useForm({
-    mode: "uncontrolled",
-    initialValues: {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
       email: "",
     },
-    validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-    },
   });
-  return (
-    <AuthLayoutWrapper
-      title="Forgot password"
-      subTitle={
-        <Group gap={4} justify="center">
-          <Text c="dimmed" fz="sm">
-            Already have an account?
-          </Text>
-          <Anchor fz="sm" component={Link} to="/signin">
-            Sign in.
-          </Anchor>
-        </Group>
-      }
-    >
-      <>
-        <HelmetWrapper title="Forgot password" />
-        <form onSubmit={form.onSubmit((values) => mutate(values.email))}>
-          <Stack>
-            <TextInput
-              withAsterisk
-              label="Email"
-              placeholder="Your email address"
-              classNames={{ input: classes.textInput }}
-              key={form.key("email")}
-              {...form.getInputProps("email")}
-              error={error?.message}
-            />
 
-            <Button
-              disabled={isSuccess}
-              loading={isPending}
-              size="lg"
-              type="submit"
-              fullWidth
-              radius="lg"
-            >
-              Reset password
-            </Button>
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    mutate(values.email);
+  };
+
+  useEffect(() => {
+    if (error) {
+      form.setError("email", { message: error.message });
+    }
+  }, [error, form]);
+
+  return (
+    <AuthLayoutWrapper>
+      <HelmetWrapper title="Forgot password" />
+      <Card>
+        <Stack>
+          <CardHeader className="text-center">
+            <CardTitle className="text-xl">Reset your password</CardTitle>
+            <CardDescription>
+              Enter your email address to reset your password
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
             {isSuccess && (
-              <Alert
-                variant="light"
-                radius="lg"
-                color="blue"
-                icon={<IconInfoCircle />}
-              >
-                If the email is registered, you will receive a password reset
-                link shortly.
-                <br /> If you don't receive an email, please check your spam
-                folder.
-              </Alert>
+              <AlertInfo title="Password reset link has been sent">
+                <div className="text-xs">
+                  If the email is registered, you will receive a password reset
+                  link shortly. If you don't receive an email, please check your
+                  spam folder.
+                </div>
+              </AlertInfo>
             )}
-          </Stack>
-        </form>
-      </>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)}>
+                <div className="grid gap-6">
+                  <div className="grid gap-6">
+                    <div className="grid gap-2">
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Username</FormLabel>
+                            <FormControl>
+                              <Input placeholder="m@example.com" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <LoaderButton
+                      loading={isPending}
+                      type="submit"
+                      disabled={isSuccess}
+                      className="w-full"
+                    >
+                      Reset password
+                    </LoaderButton>
+                  </div>
+                  <div className="text-center text-sm">
+                    Don&apos;t need to reset your password?{" "}
+                    <Link
+                      to={paths.SignUp}
+                      className="underline underline-offset-4"
+                    >
+                      Sign in
+                    </Link>
+                  </div>
+                </div>
+              </form>
+            </Form>
+          </CardContent>
+        </Stack>
+      </Card>
     </AuthLayoutWrapper>
   );
 };
