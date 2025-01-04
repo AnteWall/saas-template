@@ -2,6 +2,8 @@ import "@mantine/core/styles.layer.css";
 import "mantine-datatable/styles.layer.css";
 import "@mantine/notifications/styles.layer.css";
 
+import "./index.css";
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { MantineProvider } from "@mantine/core";
