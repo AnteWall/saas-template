@@ -46,7 +46,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         });
       }) as Promise<ProviderReturnType>;
     },
-    [refetch]
+    [refetch],
   );
 
   const logout = useCallback(
@@ -60,24 +60,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         },
       });
     },
-    [queryClient]
+    [queryClient],
   );
-
-  useEffect(() => {
-    if (error) {
-      notifications.show({
-        title: "Authentication error",
-        message: error.message,
-      });
-      return;
-    }
-    if (errorOrgs) {
-      notifications.show({
-        title: "Failed to list user organizations",
-        message: errorOrgs.statusText,
-      });
-    }
-  }, [error, errorOrgs]);
 
   return (
     <AuthContext.Provider
