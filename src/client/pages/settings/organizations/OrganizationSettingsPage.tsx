@@ -1,6 +1,6 @@
 import { HelmetWrapper } from "@/components/common/HelmetWrapper";
 import { SplitSection } from "@/components/common/SplitSection";
-import { BreadcrumbsHeader } from "@/components/layout/BreadcrumbsHeader";
+import { BreadcrumbsHeader } from "@/components/layout/breadcrumbs-header";
 import { BasicOrganizationInformation } from "@/components/settings/BasicOrganizationInformation";
 import { useOrganization } from "@/hooks/auth/useOrganization";
 import { Container, Title } from "@mantine/core";
