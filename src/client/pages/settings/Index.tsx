@@ -1,21 +1,44 @@
 import React from "react";
-import { Container, Title } from "@mantine/core";
 import { SplitSection } from "../../components/common/SplitSection";
-import { BasicAccountInformation } from "../../components/settings/BasicAccountInformation";
 import { HelmetWrapper } from "@/components/common/HelmetWrapper";
+import { Container } from "@/components/ui/container";
+import { AccountUserInfo } from "@/components/settings/account-user-info";
+import { AccountEmail } from "@/components/settings/account-email";
+import { BreadcrumbsHeader } from "@/components/layout/breadcrumbs-header";
+import { paths } from "../paths";
 
 export const Settings: React.FC = () => {
   return (
-    <Container mt="60">
-      <HelmetWrapper title="Account settings" />
-      <Title>Account settings</Title>
-      <SplitSection
-        pt="xl"
-        title="Basic Account Information"
-        description="Update your account information"
-      >
-        <BasicAccountInformation />
-      </SplitSection>
-    </Container>
+    <>
+      <BreadcrumbsHeader
+        breadcrumbs={[
+          {
+            label: "Settings",
+            to: paths.Settings,
+          },
+          {
+            label: "Account",
+          },
+        ]}
+      />
+      <Container className="container mx-auto p-8">
+        <HelmetWrapper title="Account settings" />
+        <h1 className="text-lg font-semibold">Account settings</h1>
+        <SplitSection
+          className="pt-8"
+          title="Basic Account Information"
+          description="Update your account information"
+        >
+          <AccountUserInfo />
+        </SplitSection>
+
+        <SplitSection
+          title="Account Email"
+          description="Update your account email, this will be used for login and notifications"
+        >
+          <AccountEmail />
+        </SplitSection>
+      </Container>
+    </>
   );
 };

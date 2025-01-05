@@ -5,7 +5,6 @@ import { BasicOrganizationInformation } from "@/components/settings/BasicOrganiz
 import { useOrganization } from "@/hooks/auth/useOrganization";
 import { Container, Title } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
-import { IconBuilding } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 
@@ -31,7 +30,6 @@ export const OrganizationSettingsPage: React.FC = () => {
           {
             label: "Organizations",
             to: "/settings/organizations",
-            icon: <IconBuilding size={16} />,
           },
           {
             label: organization?.name || "...",
@@ -41,7 +39,6 @@ export const OrganizationSettingsPage: React.FC = () => {
       <Container mt="60">
         <Title>Organization settings</Title>
         <SplitSection
-          pt="xl"
           title="Organization details"
           description="Use a name that your team will recognize"
         >

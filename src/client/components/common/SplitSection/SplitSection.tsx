@@ -1,31 +1,35 @@
 import React from "react";
-import { Grid, Title, Text, GridProps, Stack } from "@mantine/core";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
+import { P, TypographySmall } from "@/components/ui/typography";
 
-export interface SplitSectionProps extends GridProps {
+export interface SplitSectionProps extends React.ComponentProps<"div"> {
   title: string;
   description: string | React.ReactNode;
   children: React.ReactNode;
+  withSeparator?: boolean;
 }
 
 export const SplitSection: React.FC<SplitSectionProps> = ({
   title,
   description,
   children,
+  className,
+  withSeparator = true,
   ...otherProps
 }) => {
   return (
-    <Grid {...otherProps}>
-      <Grid.Col span={{ base: 12, md: 5 }}>
-        <Stack gap="sm">
-          <Title fz="md" order={2}>
-            {title}
-          </Title>
-          <Text fz="sm" c="dimmed" component="div">
-            {description}
-          </Text>
-        </Stack>
-      </Grid.Col>
-      <Grid.Col span={{ base: 12, md: 7 }}>{children}</Grid.Col>
-    </Grid>
+    <div className={cn("space-y-4 pt-4", className)}>
+      <div className={cn("grid grid-cols-12 gap-4")} {...otherProps}>
+        <div className="col-span-12 md:col-span-4">
+          <div className="space-y-2">
+            <TypographySmall>{title}</TypographySmall>
+            <P className="text-xs text-muted-foreground">{description}</P>
+          </div>
+        </div>
+        <div className="col-span-8">{children}</div>
+      </div>
+      {withSeparator && <Separator className="w-full" />}
+    </div>
   );
 };
