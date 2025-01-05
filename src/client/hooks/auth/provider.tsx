@@ -1,4 +1,3 @@
-import { notifications } from "@mantine/notifications";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useCallback } from "react";
 import {
@@ -19,8 +18,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const queryClient = useQueryClient();
-  const { data, isPending, error, refetch } = useSession();
-  const { data: organizations, error: errorOrgs } = useListOrganizations();
+  const { data, isPending, refetch } = useSession();
+  const { data: organizations } = useListOrganizations();
 
   useEffect(() => {
     const orgs = organizations || [];

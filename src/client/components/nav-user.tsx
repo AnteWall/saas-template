@@ -27,6 +27,8 @@ import {
 } from "@/components/ui/sidebar";
 import { toInitials } from "@/utils/string";
 import { useAuth } from "@/hooks/auth/useAuth";
+import { Link } from "react-router";
+import { paths } from "@/pages/paths";
 
 export function NavUser({
   user,
@@ -93,10 +95,12 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
+              <Link to={paths.Settings}>
+                <DropdownMenuItem>
+                  <BadgeCheck />
+                  Account
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>
                 <CreditCard />
                 Billing
