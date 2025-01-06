@@ -1,13 +1,4 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Group,
-  Card,
-  ThemeIcon,
-  Text,
-  Stack,
-  LoadingOverlay,
-} from "@mantine/core";
 import { format, formatRelative } from "date-fns";
 import { useListSessions } from "../../../hooks/auth/useListSessions.ts";
 import {
@@ -17,13 +8,18 @@ import {
 } from "@tabler/icons-react";
 import { useSession } from "../../../hooks/auth/useSession.ts";
 import { useRevokeSessionMutation } from "../../../hooks/auth/useRevokeSessionMutation.ts";
+import { Card, CardContent } from "@/components/ui/card.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import { LoaderButton } from "@/components/ui/button-loader.tsx";
+import { P } from "@/components/ui/typography.tsx";
+import { Skeleton } from "@/components/ui/skeleton.tsx";
 
 export const SessionList: React.FC = () => {
   const { data } = useSession();
   const [revokeSessionId, setRevokeSessionId] = useState<string | undefined>(
-    undefined
+    undefined,
   );
-  const { data: sessions, isPending, error, refetch } = useListSessions();
+  const { data: sessions, isPending, refetch } = useListSessions();
   const {
     mutateAsync,
     data: dataRevoke,
@@ -42,56 +38,68 @@ export const SessionList: React.FC = () => {
   const sessionsItems = (sessions?.data ?? []).map((session) => {
     const isActive = session.id === data?.data?.session.id;
     return (
-      <Card.Section withBorder key={session.id} p="md">
-        <Group>
-          <ThemeIcon variant="light">
+      <CardContent className="p-4" key={session.id}>
+        <div className="flex items-center space-x-4">
+          <Button variant="secondary" size="icon" className="cursor-default">
             {getUserAgentIcon(session.userAgent)}
-          </ThemeIcon>
-          <Stack flex={1} gap={4}>
-            <Text fw="bold" size="sm" tt="capitalize">
+          </Button>
+          <div className="flex-1 space-y-2 text-sm capitalize">
+            <P className="truncate font-bold">
               {formatRelative(new Date(session.createdAt), new Date())}
-            </Text>
-            <Text c="dimmed" fz="xs">
+            </P>
+            <P className="truncate text-muted-foreground text-xs">
               {format(new Date(session.createdAt), "PPPppp")}
-            </Text>
-          </Stack>
-          <Stack gap={4}>
-            <Button
+            </P>
+          </div>
+          <div className="flex items-center space-x-4">
+            <LoaderButton
               onClick={() => {
                 void handleRevokeSession(session);
               }}
-              variant="subtle"
+              variant={isActive ? "outline" : "secondary"}
               loading={isRevokingSession}
               disabled={isActive}
             >
               {isActive ? "Your current session" : "Revoke session"}
-            </Button>
+            </LoaderButton>
             {(errorRevoke ?? dataRevoke?.error) &&
-              session.id === revokeSessionId && (
-                <Text size="sm" c="red">
+              session.id == revokeSessionId && (
+                <P className="text-red-500 text-sm">
                   {errorRevoke?.message ??
                     dataRevoke?.error?.message ??
                     "Internal server error"}
-                </Text>
+                </P>
               )}
-          </Stack>
-        </Group>
-      </Card.Section>
+          </div>
+        </div>
+      </CardContent>
     );
   });
 
+  if (isPending) {
+    return (
+      <>
+        <Card className="p-4 space-y-4">
+          <div className="flex items-center justify-between">
+            <Skeleton className="w-9 h-9" />
+            <div className="flex-auto ml-4 flex items-center space-x-4">
+              <div className="flex flex-col space-y-2 w-full">
+                <Skeleton className="w-full h-7" />
+                <Skeleton className="w-full h-4" />
+              </div>
+              <Skeleton className="w-72 h-9" />
+            </div>
+          </div>
+        </Card>
+        <Card>{sessionsItems}</Card>
+      </>
+    );
+  }
+
   return (
-    <Card mih="75">
-      <LoadingOverlay visible={isPending} />
-      {sessionsItems}
-      {error && (
-        <Card.Section p="md">
-          <Text size="sm" c="red">
-            {error.message || "Internal server error"}
-          </Text>
-        </Card.Section>
-      )}
-    </Card>
+    <>
+      <Card>{sessionsItems}</Card>
+    </>
   );
 };
 
