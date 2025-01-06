@@ -6,6 +6,7 @@ import { AccountUserInfo } from "@/components/settings/account-user-info";
 import { AccountEmail } from "@/components/settings/account-email";
 import { BreadcrumbsHeader } from "@/components/layout/breadcrumbs-header";
 import { paths } from "../paths";
+import { TypographyLarge } from "@/components/ui/typography";
 
 export const Settings: React.FC = () => {
   return (
@@ -23,7 +24,7 @@ export const Settings: React.FC = () => {
       />
       <Container className="container mx-auto p-8">
         <HelmetWrapper title="Account settings" />
-        <h1 className="text-lg font-semibold">Account settings</h1>
+        <TypographyLarge>Account settings</TypographyLarge>
         <SplitSection
           className="pt-8"
           title="Basic Account Information"

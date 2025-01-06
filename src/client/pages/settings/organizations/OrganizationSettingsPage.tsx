@@ -2,8 +2,9 @@ import { HelmetWrapper } from "@/components/common/HelmetWrapper";
 import { SplitSection } from "@/components/common/SplitSection";
 import { BreadcrumbsHeader } from "@/components/layout/breadcrumbs-header";
 import { BasicOrganizationInformation } from "@/components/settings/BasicOrganizationInformation";
+import { Container } from "@/components/ui/container";
+import { TypographyLarge } from "@/components/ui/typography";
 import { useOrganization } from "@/hooks/auth/useOrganization";
-import { Container, Title } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { useEffect } from "react";
 import { useParams } from "react-router";
@@ -36,8 +37,8 @@ export const OrganizationSettingsPage: React.FC = () => {
           },
         ]}
       />
-      <Container mt="60">
-        <Title>Organization settings</Title>
+      <Container>
+        <TypographyLarge>Organization settings</TypographyLarge>
         <SplitSection
           title="Organization details"
           description="Use a name that your team will recognize"

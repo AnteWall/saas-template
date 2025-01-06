@@ -102,6 +102,18 @@ function Blockquote({
   );
 }
 
+function TypographyLarge({
+  className,
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLElement>) {
+  return (
+    <p className={cn("text-lg font-semibold", className)} {...props}>
+      {children}
+    </p>
+  );
+}
+
 function TypographySmall({
   className,
   children,
@@ -117,4 +129,4 @@ function TypographySmall({
   );
 }
 
-export { H1, H2, H3, H4, P, Blockquote, TypographySmall };
+export { H1, H2, H3, H4, P, Blockquote, TypographyLarge, TypographySmall };
