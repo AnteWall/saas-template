@@ -11,7 +11,6 @@ export const Security: React.FC = () => {
       <Container mt="60">
         <Title>Security</Title>
         <SplitSection
-          pt="xl"
           title="Active sessions"
           description="Manage your active sessions on other devices"
         >
