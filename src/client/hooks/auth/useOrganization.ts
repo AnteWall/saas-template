@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { organization } from "./auth";
 
+export const OrganizationKey = "organization";
+
 export function useOrganization(id: string) {
   const query = useQuery({
-    queryKey: ["organization", id],
+    queryKey: [OrganizationKey, id],
     queryFn: async () => {
       return (
         await organization.getFullOrganization({

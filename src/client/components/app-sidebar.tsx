@@ -116,6 +116,10 @@ const data = {
           url: paths.Settings,
         },
         {
+          title: "Security",
+          url: paths.SettingsSecurity,
+        },
+        {
           title: "Organizations",
           url: paths.SettingsOrganizations,
         },
