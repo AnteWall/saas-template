@@ -1,6 +1,5 @@
 import { config } from "@/config";
 import React from "react";
-import { Helmet } from "react-helmet-async";
 
 export interface HelmetWrapperProps {
   title: string;
@@ -21,10 +20,10 @@ export const HelmetWrapper: React.FC<HelmetWrapperProps> = ({
     : `/${canonicalSuffix}`;
 
   return (
-    <Helmet>
+    <>
       <title>{`${title} ${withSuffix ? `| ${config.appName}` : ""}`}</title>
       <link rel="canonical" href={`${config.appUrl}${fixedCanonicalSuffix}`} />
       {children}
-    </Helmet>
+    </>
   );
 };
