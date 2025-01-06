@@ -14,7 +14,6 @@ import { AppRouter } from "./pages/AppRouter";
 import { BrowserRouter } from "react-router";
 import { AuthProvider } from "./hooks/auth/provider";
 import { Notifications } from "@mantine/notifications";
-import { HelmetProvider } from "react-helmet-async";
 import { trpc } from "./hooks/trpc";
 import { httpBatchLink } from "@trpc/client";
 
@@ -47,11 +46,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         >
           <Notifications />
           <AuthProvider>
-            <HelmetProvider>
-              <BrowserRouter>
-                <AppRouter />
-              </BrowserRouter>
-            </HelmetProvider>
+            <BrowserRouter>
+              <AppRouter />
+            </BrowserRouter>
           </AuthProvider>
         </MantineProvider>
       </QueryClientProvider>
