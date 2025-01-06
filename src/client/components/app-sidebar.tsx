@@ -24,6 +24,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { useSession } from "@/hooks/auth/useSession";
+import { paths } from "@/pages/paths";
+import { useLocation } from "react-router";
 
 // This is sample data.
 const data = {
@@ -52,21 +54,13 @@ const data = {
   navMain: [
     {
       title: "Playground",
-      url: "#",
+      url: paths.Home,
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
+          title: "Home",
+          url: paths.Home,
         },
       ],
     },
@@ -118,20 +112,12 @@ const data = {
       icon: Settings2,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "Account",
+          url: paths.Settings,
         },
         {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
+          title: "Organizations",
+          url: paths.SettingsOrganizations,
         },
       ],
     },
@@ -158,13 +144,39 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: sessionData } = useSession();
 
+  const location = useLocation();
+
+  const isMatchedRoute = (item: {
+    url: string;
+    items?: { url: string }[];
+  }): boolean => {
+    if (item.url === "/") {
+      return location.pathname === "/";
+    }
+    const match = location.pathname.includes(item.url);
+    console.log(match, item.url, location.pathname);
+    return (
+      match || (item.items ?? []).some((subItem) => isMatchedRoute(subItem))
+    );
+  };
+
+  const items = data.navMain.map((item) => {
+    return {
+      title: item.title,
+      url: item.url,
+      icon: item.icon,
+      isActive: isMatchedRoute(item),
+      items: item.items,
+    };
+  });
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={items} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
