@@ -13,7 +13,10 @@ test.describe("Signup", () => {
 
     await page.getByLabel("Name").fill("Test Testsson");
     await page.getByLabel("Email").fill("testsson@test.com");
-    await page.getByLabel("Password").fill("password12345");
+    await page.getByLabel("Password", { exact: true }).fill("password12345");
+    await page
+      .getByLabel("Confirm password", { exact: true })
+      .fill("password12345");
 
     await page.getByRole("button", { name: "Sign up" }).click();
     await expect(page).toHaveURL("/");

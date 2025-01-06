@@ -121,7 +121,7 @@ export function SignUpForm({
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Username</FormLabel>
+                          <FormLabel>Email</FormLabel>
                           <FormControl>
                             <Input placeholder="m@example.com" {...field} />
                           </FormControl>
@@ -165,7 +165,7 @@ export function SignUpForm({
                     type="submit"
                     className="w-full"
                   >
-                    Login
+                    Sign up
                   </LoaderButton>
                 </div>
                 <div className="text-center text-sm">
