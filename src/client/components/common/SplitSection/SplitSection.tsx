@@ -27,7 +27,7 @@ export const SplitSection: React.FC<SplitSectionProps> = ({
             <P className="text-xs text-muted-foreground">{description}</P>
           </div>
         </div>
-        <div className="col-span-8">{children}</div>
+        <div className="col-span-12 md:col-span-8">{children}</div>
       </div>
       {withSeparator && <Separator className="w-full" />}
     </div>

@@ -43,7 +43,7 @@ export const SessionList: React.FC = () => {
           <Button variant="secondary" size="icon" className="cursor-default">
             {getUserAgentIcon(session.userAgent)}
           </Button>
-          <div className="flex-1 space-y-2 text-sm capitalize">
+          <div className="flex-1 space-y-2 text-sm capitalize truncate">
             <P className="truncate font-bold">
               {formatRelative(new Date(session.createdAt), new Date())}
             </P>
