@@ -1,16 +1,29 @@
 import { HelmetWrapper } from "@/components/common/HelmetWrapper";
+import { BreadcrumbsHeader } from "@/components/layout/breadcrumbs-header";
 import { OrganizationsList } from "@/components/settings/OrganizationsList";
-import { Title, Container, Group, Button } from "@mantine/core";
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
+import { TypographyLarge } from "@/components/ui/typography";
+import { paths } from "@/pages/paths";
 
 export const OrganizationsPage: React.FC = () => {
   return (
     <>
       <HelmetWrapper title="Organizations" />
-      <Container mt="60">
-        <Group mb="xl" justify="space-between">
-          <Title>Organizations</Title>
+      <BreadcrumbsHeader
+        breadcrumbs={[
+          { label: "Settings", to: paths.Settings },
+          {
+            label: "Organizations",
+            to: paths.SettingsOrganizations,
+          },
+        ]}
+      />
+      <Container>
+        <div className="flex justify-between items-center mb-4">
+          <TypographyLarge>Organizations</TypographyLarge>
           <Button>Create organization</Button>
-        </Group>
+        </div>
         <OrganizationsList />
       </Container>
     </>

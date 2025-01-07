@@ -6,7 +6,6 @@ export function useUpdateOrganizationMutation() {
   const queryClient = useQueryClient();
   const query = useMutation({
     onSuccess: (res) => {
-      console.log(res);
       queryClient.invalidateQueries({
         queryKey: [OrganizationKey, res.data?.id],
       });
