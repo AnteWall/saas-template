@@ -21,7 +21,7 @@ export const getOrganizationMembers: TRPCQueryProcedure<{
   .input(
     z.object({
       organizationId: z.string(),
-    })
+    }),
   )
   .query(async ({ ctx, input }) => {
     const org = await prisma.organization.findUnique({

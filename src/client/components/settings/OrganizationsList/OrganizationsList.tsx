@@ -1,21 +1,18 @@
-import React, { useMemo } from "react";
+import React from "react";
 import classes from "./OrganizationsList.module.css";
-import { DataTable } from "@/components/common/DataTable";
-import type { DataTableColumn } from "mantine-datatable";
 import { useListOrganizations } from "@/hooks/auth/useListOrganizations";
-import {
-  ActionIcon,
-  Text,
-  Box,
-  Stack,
-  Avatar,
-  Group,
-  Skeleton,
-} from "@mantine/core";
 import { IconDots } from "@tabler/icons-react";
 import { trpc } from "@/hooks/trpc";
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 import { paths } from "@/pages/paths";
+import { DataTable } from "@/components/ui/data-table";
+import { createColumnHelper } from "@tanstack/react-table";
+import { Button } from "@/components/ui/button";
+import { P } from "@/components/ui/typography";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { toInitials } from "@/utils/string";
+import { AvatarImage } from "@radix-ui/react-avatar";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Organization {
   id: string;
@@ -31,80 +28,68 @@ const OrganizationStats: React.FC<{
   organizationId: string;
   logo?: string | null;
 }> = ({ logo, organizationId, orgnaizationName }) => {
-  const { data, isPending } = trpc.getOrganizationMembers.useQuery({
-    organizationId,
-  });
+  const { data, isPending } =
+    trpc.organizations.getOrganizationMembers.useQuery({
+      organizationId,
+    });
 
   return (
-    <Box py="xs">
-      <Group>
-        <Avatar src={logo} size="32" radius="sm" />
-        <Stack gap={4}>
-          <Text size="sm" fw="bold">
-            {orgnaizationName}
-          </Text>
-          <Skeleton h={17} visible={isPending}>
-            <Text size="xs" c="dimmed">
-              {data?.members.length ?? "-"} members
-            </Text>
-          </Skeleton>
-        </Stack>
-      </Group>
-    </Box>
+    <Link to={paths.SettingsOrganization({ id: organizationId })}>
+      <div className="flex py-2 items-center space-x-4 px-4">
+        <div className="flex items-center space-x-4">
+          <Avatar className="h-8 w-8 rounded-lg">
+            {logo && <AvatarImage src={logo} alt={orgnaizationName} />}
+            <AvatarFallback className="rounded-lg">
+              {toInitials(orgnaizationName)}
+            </AvatarFallback>
+          </Avatar>
+          <div className="flex-1 space-y-1 text-sm capitalize truncate">
+            <P className="font-bold text-sm">{orgnaizationName}</P>
+            {isPending ? (
+              <Skeleton className="h-4" />
+            ) : (
+              <P className="text-muted-foreground text-xs">
+                {data?.members.length ?? "Unknown number of"} members
+              </P>
+            )}
+          </div>
+        </div>
+      </div>
+    </Link>
   );
 };
 
+const columnHelper = createColumnHelper<Organization>();
+
 export const OrganizationsList: React.FC = () => {
-  const { data, isPending, error } = useListOrganizations();
-  const navigate = useNavigate();
+  const { data } = useListOrganizations();
 
-  const columns = useMemo(
-    () =>
-      [
-        {
-          accessor: "name",
-          title: "Name",
-          render: (row) => (
-            <OrganizationStats
-              orgnaizationName={row.name}
-              logo={row.logo}
-              organizationId={row.id}
-            />
-          ),
-        },
-        {
-          textAlign: "right",
-          accessor: "id",
-          render: () => (
-            <ActionIcon variant="subtle">
-              <IconDots size={16} />
-            </ActionIcon>
-          ),
-        },
-      ] as DataTableColumn<Organization>[],
-    []
-  );
-
-  const onRowClick = (record: Organization) => {
-    void navigate(
-      paths.SettingsOrganization({
-        id: record.id,
-      })
-    );
-  };
+  const columns = [
+    columnHelper.accessor("name", {
+      header: "Name",
+      cell: ({ row }) => (
+        <OrganizationStats
+          orgnaizationName={row.getValue("name")}
+          logo={row.original.logo}
+          organizationId={row.original.id}
+        />
+      ),
+    }),
+    columnHelper.accessor("id", {
+      header: "",
+      cell: () => (
+        <div className="flex items-center justify-end">
+          <Button variant="ghost" size="icon">
+            <IconDots size={16} />
+          </Button>
+        </div>
+      ),
+    }),
+  ];
 
   return (
     <div className={classes.root}>
-      <DataTable
-        onRowClick={({ record }) => {
-          onRowClick(record);
-        }}
-        fetching={isPending}
-        error={error}
-        noHeader
-        columns={columns}
-        records={data ?? []}
-      />
+      <DataTable columns={columns} data={data ?? []} />
     </div>
   );
 };

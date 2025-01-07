@@ -158,7 +158,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       return location.pathname === "/";
     }
     const match = location.pathname.includes(item.url);
-    console.log(match, item.url, location.pathname);
     return (
       match || (item.items ?? []).some((subItem) => isMatchedRoute(subItem))
     );
