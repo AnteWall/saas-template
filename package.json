@@ -61,7 +61,7 @@
         "zod": "^3.24.1"
     },
     "devDependencies": {
-        "@eslint/js": "9.17.0",
+        "@eslint/js": "9.18.0",
         "@playwright/test": "1.49.1",
         "@tanstack/eslint-plugin-query": "5.62.16",
         "@tanstack/router-devtools": "1.95.3",
@@ -76,7 +76,7 @@
         "@typescript-eslint/parser": "8.19.1",
         "@vitejs/plugin-react": "4.3.4",
         "autoprefixer": "^10.4.20",
-        "eslint": "9.17.0",
+        "eslint": "9.18.0",
         "eslint-config-prettier": "9.1.0",
         "eslint-import-resolver-typescript": "3.7.0",
         "eslint-import-resolver-typescript-bun": "0.0.104",
