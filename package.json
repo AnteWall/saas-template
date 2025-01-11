@@ -37,7 +37,7 @@
         "@trpc/react-query": "11.0.0-rc.695",
         "@trpc/server": "11.0.0-rc.695",
         "add": "2.0.6",
-        "better-auth": "1.1.10",
+        "better-auth": "1.1.11",
         "class-variance-authority": "^0.7.1",
         "clsx": "2.1.1",
         "cors": "2.8.5",
