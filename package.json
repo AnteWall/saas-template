@@ -71,7 +71,7 @@
         "@types/cors": "2.8.17",
         "@types/express": "5.0.0",
         "@types/node": "22.10.5",
-        "@types/react": "19.0.5",
+        "@types/react": "19.0.6",
         "@types/react-dom": "19.0.3",
         "@typescript-eslint/parser": "8.19.1",
         "@vitejs/plugin-react": "4.3.4",
