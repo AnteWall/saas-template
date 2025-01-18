@@ -21,7 +21,9 @@ import { NavLink } from "react-router";
 
 export function NavMain({
   items,
+  label,
 }: {
+  label: string;
   items: {
     title: string;
     url: string;
@@ -35,7 +37,7 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>{label}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible

@@ -43,6 +43,7 @@ class PostmarkEmailService implements EmailService {
 
   public async sendResetPassword({ user, url }: SendResetPasswordInput) {
     if (!this.isClientReady()) {
+      logger.warn({ user, url }, "cannot send email, client is not ready");
       return;
     }
     const res = await this.client.sendEmailWithTemplate({

@@ -14,7 +14,26 @@ export const auth = betterAuth({
   }),
   logger: {
     log(level, message, ...args) {
-      betterAuthLogger[level](message, ...args);
+      const objArgs = args
+        .map((arg) => {
+          if (arg instanceof Error) {
+            return {
+              message: arg.message,
+              stack: arg.stack,
+            };
+          }
+          return arg;
+        })
+        .reduce((acc, arg) => {
+          if (typeof arg === "object") {
+            return {
+              ...acc,
+              ...arg,
+            };
+          }
+          return acc;
+        }, {});
+      betterAuthLogger[level](objArgs, message);
     },
   },
   plugins: [admin(), organization()],
