@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 
 import { GalleryVerticalEnd } from "lucide-react";
+import { config } from "@/config";
 
 export interface AuthLayoutWrapperProps {
   children: React.ReactNode;
@@ -22,7 +23,7 @@ export const AuthLayoutWrapper: React.FC<AuthLayoutWrapperProps> = ({
           <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
             <GalleryVerticalEnd className="size-4" />
           </div>
-          Acme Inc.
+          {config.appName}
         </Link>
         {children}
       </div>

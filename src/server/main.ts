@@ -7,6 +7,7 @@ import { auth } from "./auth/auth.js";
 import { createContext } from "./trpc/trpc.ts";
 import { appRouter } from "./trpc/router.ts";
 import { logger, httpLogger } from "./logger.ts";
+import { prisma } from "./datasources/prisma.ts";
 
 const PORT = process.env.PORT || 3000;
 
@@ -16,7 +17,7 @@ const createServer = async () => {
     cors({
       origin: "http://127.0.0.1:3000", // Explicit origin
       credentials: true, // Allow credentials
-    })
+    }),
   );
   app.use(httpLogger);
   // Auth routes
@@ -29,19 +30,23 @@ const createServer = async () => {
     trpcExpress.createExpressMiddleware({
       router: appRouter,
       createContext,
-    })
+    }),
   );
+
+  prisma.$connect();
 
   const server = app.listen(PORT, () => {
     logger.info(
       {
         url: `http://localhost:${PORT}`,
       },
-      `Server started`
+      `Server started`,
     );
   });
 
   await bind(app, server);
+
+  await prisma.$disconnect();
 };
 
 await createServer();

@@ -21,9 +21,9 @@ import { cn } from "@/lib/utils";
 import { paths } from "@/pages/paths";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { z } from "zod";
 
 interface ResetPasswordFormProps {
@@ -40,6 +40,7 @@ export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
   token,
   ...props
 }) => {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -73,6 +74,16 @@ export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
     );
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate(paths.SignIn);
+    }, 3000);
+    if (!isSuccess) {
+      clearTimeout(timer);
+    }
+    return () => clearTimeout(timer);
+  }, [isSuccess, navigate]);
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -86,6 +97,9 @@ export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
               <div className="text-sm">
                 Your password has been successfully reset. You can now sign in
                 with your new password.
+              </div>
+              <div className="pt-2 text-sm">
+                Redirecting you to the sign in page in a few seconds.
               </div>
               <div className="pt-2 text-sm">
                 Click{" "}
