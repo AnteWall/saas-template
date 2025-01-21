@@ -22,7 +22,7 @@
         "@tanstack/react-query": "5.64.2",
         "@tanstack/react-query-devtools": "5.64.2",
         "@tanstack/react-table": "^8.20.6",
-        "@testcontainers/postgresql": "10.16.0",
+        "@testcontainers/postgresql": "10.17.1",
         "@trpc/client": "11.0.0-rc.708",
         "@trpc/react-query": "11.0.0-rc.708",
         "@trpc/server": "11.0.0-rc.708",
@@ -465,7 +465,7 @@
 
     "@tanstack/virtual-file-routes": ["@tanstack/virtual-file-routes@1.97.0", "", {}, "sha512-UsLBb+ALvxbRTYMlx3WJ36oq13Ps4n8tcN8biFrtiCbA8TiS0sgSAOr0lPQpzQqZuVSjscPjX43ciKf33hvkQw=="],
 
-    "@testcontainers/postgresql": ["@testcontainers/postgresql@10.16.0", "", { "dependencies": { "testcontainers": "^10.16.0" } }, "sha512-zWFQI+3QxlEELRvVv27i6zlVEPNUz9zKaSh7iWmFlCdfhcyr78daS0FG8FIfdQ79VK7YXA4jv+dTYXa2SwXu/w=="],
+    "@testcontainers/postgresql": ["@testcontainers/postgresql@10.17.1", "", { "dependencies": { "testcontainers": "^10.17.1" } }, "sha512-TXFU7ptv8pTVscA7sd5NtSuxO3IP/d8I/plOliVyH+w8IRb1LdXxe/BEgJrwhKgVefarYvgHeBPgqjG3Jef+3A=="],
 
     "@trivago/prettier-plugin-sort-imports": ["@trivago/prettier-plugin-sort-imports@5.2.1", "", { "dependencies": { "@babel/generator": "^7.26.2", "@babel/parser": "^7.26.2", "@babel/traverse": "^7.25.9", "@babel/types": "^7.26.0", "javascript-natural-sort": "^0.7.1", "lodash": "^4.17.21" }, "peerDependencies": { "@vue/compiler-sfc": "3.x", "prettier": "2.x - 3.x", "prettier-plugin-svelte": "3.x", "svelte": "4.x || 5.x" }, "optionalPeers": ["@vue/compiler-sfc", "prettier-plugin-svelte", "svelte"] }, "sha512-NDZndt0fmVThIx/8cExuJHLZagUVzfGCoVrwH9x6aZvwfBdkrDFTYujecek6X2WpG4uUFsVaPg5+aNQPSyjcmw=="],
 
@@ -1483,7 +1483,7 @@
 
     "tar-stream": ["tar-stream@3.1.7", "", { "dependencies": { "b4a": "^1.6.4", "fast-fifo": "^1.2.0", "streamx": "^2.15.0" } }, "sha512-qJj60CXt7IU1Ffyc3NJMjh6EkuCFej46zUqJ4J7pqYlThyd9bO0XBTmcOIhSzZJVWfsLks0+nle/j538YAW9RQ=="],
 
-    "testcontainers": ["testcontainers@10.16.0", "", { "dependencies": { "@balena/dockerignore": "^1.0.2", "@types/dockerode": "^3.3.29", "archiver": "^7.0.1", "async-lock": "^1.4.1", "byline": "^5.0.0", "debug": "^4.3.5", "docker-compose": "^0.24.8", "dockerode": "^3.3.5", "get-port": "^5.1.1", "proper-lockfile": "^4.1.2", "properties-reader": "^2.3.0", "ssh-remote-port-forward": "^1.0.4", "tar-fs": "^3.0.6", "tmp": "^0.2.3", "undici": "^5.28.4" } }, "sha512-oxPLuOtrRWS11A+Yn0+zXB7GkmNarflWqmy6CQJk8KJ75LZs2/zlUXDpizTbPpCGtk4kE2EQYwFZjrE967F8Wg=="],
+    "testcontainers": ["testcontainers@10.17.1", "", { "dependencies": { "@balena/dockerignore": "^1.0.2", "@types/dockerode": "^3.3.29", "archiver": "^7.0.1", "async-lock": "^1.4.1", "byline": "^5.0.0", "debug": "^4.3.5", "docker-compose": "^0.24.8", "dockerode": "^3.3.5", "get-port": "^5.1.1", "proper-lockfile": "^4.1.2", "properties-reader": "^2.3.0", "ssh-remote-port-forward": "^1.0.4", "tar-fs": "^3.0.6", "tmp": "^0.2.3", "undici": "^5.28.4" } }, "sha512-pYwpm6iH1UtZFVoSWjfUol4JCMyX4UksA5fwDotlTp2GgMqoHud+A+PY60kYUBVdSJJ/5AsSqhhFRvoK4ijISg=="],
 
     "text-decoder": ["text-decoder@1.2.3", "", { "dependencies": { "b4a": "^1.6.4" } }, "sha512-3/o9z3X0X0fTupwsYvR03pJ/DjWuqqrfwBgTQzdWDiQSm9KitAyz/9WqsT2JQW7KV2m+bC2ol/zqpW37NHxLaA=="],
 
