@@ -1,5 +1,6 @@
 import { BreadcrumbsHeader } from "@/components/layout/breadcrumbs-header";
-import { Container, Title } from "@mantine/core";
+import { Container } from "@/components/ui/container";
+import { H1 } from "@/components/ui/typography";
 
 export const Home: React.FC = () => {
   return (
@@ -12,8 +13,8 @@ export const Home: React.FC = () => {
           },
         ]}
       />
-      <Container mt="60">
-        <Title order={1}>Home</Title>
+      <Container>
+        <H1>Home</H1>
       </Container>
     </>
   );
