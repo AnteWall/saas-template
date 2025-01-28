@@ -7,6 +7,7 @@ import { AccountEmail } from "@/components/settings/account-email";
 import { BreadcrumbsHeader } from "@/components/layout/breadcrumbs-header";
 import { paths } from "../paths";
 import { TypographyLarge } from "@/components/ui/typography";
+import { UserAccounts } from "@/components/settings/user-accounts";
 
 export const Settings: React.FC = () => {
   return (
@@ -38,6 +39,13 @@ export const Settings: React.FC = () => {
           description="Update your account email, this will be used for login and notifications"
         >
           <AccountEmail />
+        </SplitSection>
+
+        <SplitSection
+          title="Accounts"
+          description="We support multiple account types, you can link them here"
+        >
+          <UserAccounts />
         </SplitSection>
       </Container>
     </>

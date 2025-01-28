@@ -69,4 +69,16 @@ const AlertInfo: React.FC<{
   </Alert>
 );
 
-export { Alert, AlertTitle, AlertDescription, AlertInfo };
+const AlertError: React.FC<{
+  title: string;
+  children: React.ReactNode;
+  className?: string;
+}> = ({ title, children, className }) => (
+  <Alert variant="destructive" className={className}>
+    <InfoIcon className="h-4 w-4" />
+    <AlertTitle>{title}</AlertTitle>
+    <AlertDescription>{children}</AlertDescription>
+  </Alert>
+);
+
+export { Alert, AlertTitle, AlertDescription, AlertInfo, AlertError };

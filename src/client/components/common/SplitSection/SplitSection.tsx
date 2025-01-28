@@ -19,7 +19,7 @@ export const SplitSection: React.FC<SplitSectionProps> = ({
   ...otherProps
 }) => {
   return (
-    <div className={cn("space-y-4 pt-4", className)}>
+    <div className={cn("space-y-8 pt-8", className)}>
       <div className={cn("grid grid-cols-12 gap-4")} {...otherProps}>
         <div className="col-span-12 md:col-span-4">
           <div className="space-y-2">

@@ -8,39 +8,51 @@ import { createId } from "@paralleldrive/cuid2";
 
 const betterAuthLogger = logger.child({ module: "better-auth" });
 
+const onLog = (
+  level: "info" | "debug" | "warn" | "error",
+  message: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ...args: any[]
+) => {
+  const objArgs = args
+    .map((arg) => {
+      if (arg instanceof Error) {
+        return {
+          message: arg.message,
+          stack: arg.stack,
+        };
+      }
+      return arg;
+    })
+    .reduce((acc, arg) => {
+      if (typeof arg === "object") {
+        return {
+          ...acc,
+          ...arg,
+        };
+      }
+      return acc;
+    }, {});
+  betterAuthLogger[level](objArgs, message);
+};
+
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
   logger: {
-    log(level, message, ...args) {
-      const objArgs = args
-        .map((arg) => {
-          if (arg instanceof Error) {
-            return {
-              message: arg.message,
-              stack: arg.stack,
-            };
-          }
-          return arg;
-        })
-        .reduce((acc, arg) => {
-          if (typeof arg === "object") {
-            return {
-              ...acc,
-              ...arg,
-            };
-          }
-          return acc;
-        }, {});
-      betterAuthLogger[level](objArgs, message);
-    },
+    log: onLog,
   },
   plugins: [admin(), organization()],
   emailAndPassword: {
     enabled: true,
     sendResetPassword: async ({ user, url, token }) => {
       emailService.sendResetPassword({ user, url, token });
+    },
+  },
+  account: {
+    accountLinking: {
+      enabled: true,
     },
   },
   socialProviders: {

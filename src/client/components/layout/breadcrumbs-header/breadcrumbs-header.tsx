@@ -47,7 +47,10 @@ export const BreadcrumbsHeader: React.FC<BreadcrumbsHeaderProps> = ({
 
       return [
         ...acc,
-        <BreadcrumbSeparator className="hidden md:block" />,
+        <BreadcrumbSeparator
+          key={`sep-${index}`}
+          className="hidden md:block"
+        />,
         item,
       ];
     },
