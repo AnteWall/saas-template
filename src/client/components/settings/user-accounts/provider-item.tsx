@@ -53,7 +53,7 @@ export const ProviderItem: React.FC<ProviderItemProps> = ({
   }
 
   return (
-    <div className="flex justify-between items-center py-4 px-4 border-b border-gray-200">
+    <div className="flex justify-between items-center py-4 px-4 border-b border-gray-200 last:border-b-0">
       <div className="flex items-center">
         <div className="w-8 flex items-center justify-center">
           {providerToIcon[provider]}
