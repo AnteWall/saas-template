@@ -60,7 +60,7 @@
         "@playwright/test": "1.50.1",
         "@tanstack/eslint-plugin-query": "5.66.0",
         "@tanstack/router-devtools": "1.99.0",
-        "@tanstack/router-plugin": "1.99.0",
+        "@tanstack/router-plugin": "1.99.3",
         "@trivago/prettier-plugin-sort-imports": "^5.2.1",
         "@types/bun": "1.2.2",
         "@types/cors": "2.8.17",
