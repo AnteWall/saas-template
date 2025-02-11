@@ -71,7 +71,7 @@
         "@typescript-eslint/parser": "8.23.0",
         "@vitejs/plugin-react": "4.3.4",
         "autoprefixer": "^10.4.20",
-        "eslint": "9.20.0",
+        "eslint": "9.20.1",
         "eslint-config-prettier": "9.1.0",
         "eslint-import-resolver-typescript": "3.7.0",
         "eslint-import-resolver-typescript-bun": "0.0.104",
