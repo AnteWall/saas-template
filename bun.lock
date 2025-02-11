@@ -3,7 +3,7 @@
   "workspaces": {
     "": {
       "dependencies": {
-        "@hookform/resolvers": "^3.9.1",
+        "@hookform/resolvers": "^4.0.0",
         "@paralleldrive/cuid2": "2.2.2",
         "@prisma/client": "6.5.0",
         "@radix-ui/react-avatar": "^1.1.2",
@@ -219,7 +219,7 @@
 
     "@hexagon/base64": ["@hexagon/base64@1.1.28", "", {}, "sha512-lhqDEAvWixy3bZ+UOYbPwUbBkwBq5C1LAJ/xPC8Oi+lL54oyakv/npbA0aU2hgCsx/1NUd4IBvV03+aUBWxerw=="],
 
-    "@hookform/resolvers": ["@hookform/resolvers@3.9.1", "", { "peerDependencies": { "react-hook-form": "^7.0.0" } }, "sha512-ud2HqmGBM0P0IABqoskKWI6PEf6ZDDBZkFqe2Vnl+mTHCEHzr3ISjjZyCwTjC/qpL25JC9aIDkloQejvMeq0ug=="],
+    "@hookform/resolvers": ["@hookform/resolvers@4.0.0", "", { "peerDependencies": { "react-hook-form": "^7.0.0" } }, "sha512-93ZueVlTaeMF0pRbrLbcnzrxeb2mGA/xyO3RgfrsKs5OCtcfjoWcdjBJm+N7096Jfg/JYlGPjuyQCgqVEodSTg=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 

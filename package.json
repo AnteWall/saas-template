@@ -13,7 +13,7 @@
         "lint": "eslint src"
     },
     "dependencies": {
-        "@hookform/resolvers": "^3.9.1",
+        "@hookform/resolvers": "^4.0.0",
         "@paralleldrive/cuid2": "2.2.2",
         "@prisma/client": "6.5.0",
         "@radix-ui/react-avatar": "^1.1.2",
