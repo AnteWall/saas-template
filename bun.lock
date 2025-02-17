@@ -63,7 +63,7 @@
         "autoprefixer": "^10.4.20",
         "eslint": "9.20.1",
         "eslint-config-prettier": "9.1.0",
-        "eslint-import-resolver-typescript": "3.8.0",
+        "eslint-import-resolver-typescript": "3.8.1",
         "eslint-import-resolver-typescript-bun": "0.0.104",
         "eslint-plugin-import": "2.31.0",
         "eslint-plugin-react-hooks": "5.1.0",
@@ -807,7 +807,7 @@
 
     "eslint-import-resolver-node": ["eslint-import-resolver-node@0.3.9", "", { "dependencies": { "debug": "^3.2.7", "is-core-module": "^2.13.0", "resolve": "^1.22.4" } }, "sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g=="],
 
-    "eslint-import-resolver-typescript": ["eslint-import-resolver-typescript@3.8.0", "", { "dependencies": { "@nolyfill/is-core-module": "1.0.39", "debug": "^4.3.7", "enhanced-resolve": "^5.15.0", "get-tsconfig": "^4.10.0", "is-bun-module": "^1.0.2", "stable-hash": "^0.0.4", "tinyglobby": "^0.2.10" }, "peerDependencies": { "eslint": "*", "eslint-plugin-import": "*", "eslint-plugin-import-x": "*" }, "optionalPeers": ["eslint-plugin-import", "eslint-plugin-import-x"] }, "sha512-fItUrP/+xwpavWgadrn6lsvcMe80s08xIVFXkUXvhR4cZD2ga96kRF/z/iFGDI7ZDnvtlaZ0wGic7Tw+DhgVnA=="],
+    "eslint-import-resolver-typescript": ["eslint-import-resolver-typescript@3.8.1", "", { "dependencies": { "@nolyfill/is-core-module": "1.0.39", "debug": "^4.3.7", "enhanced-resolve": "^5.15.0", "get-tsconfig": "^4.10.0", "is-bun-module": "^1.0.2", "stable-hash": "^0.0.4", "tinyglobby": "^0.2.10" }, "peerDependencies": { "eslint": "*", "eslint-plugin-import": "*", "eslint-plugin-import-x": "*" }, "optionalPeers": ["eslint-plugin-import", "eslint-plugin-import-x"] }, "sha512-qw5TPA12HTmb9CkcuiNrFtwhM1ae2FWysLeRrTbQ+/JKS///gbL3fQ5LRhAZnzkcqkScOvkB5Y5o+xgyQz1VVg=="],
 
     "eslint-import-resolver-typescript-bun": ["eslint-import-resolver-typescript-bun@0.0.104", "", { "dependencies": { "debug": "^4.3.6", "eslint-import-resolver-typescript": "^3.6.3" }, "peerDependencies": { "bun-types": "^0.8.1" } }, "sha512-sikZSFGoc9qDcJnDCMtVE1DFslbd2u8dZ7AsL4zIWhzWMcUAUoqAGhxxKHZNQebmHczU7IKBSRmDMjrE7TOS8w=="],
 
