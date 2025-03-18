@@ -39,7 +39,7 @@
         "cors": "2.8.5",
         "date-fns": "4.1.0",
         "express": "4.21.2",
-        "globals": "15.15.0",
+        "globals": "16.0.0",
         "lucide-react": "^0.483.0",
         "pino": "9.6.0",
         "pino-http": "10.4.0",
