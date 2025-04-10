@@ -15,8 +15,8 @@
         "@radix-ui/react-slot": "^1.1.1",
         "@radix-ui/react-tooltip": "^1.1.6",
         "@tabler/icons-react": "3.31.0",
-        "@tanstack/react-query": "5.72.1",
-        "@tanstack/react-query-devtools": "5.72.1",
+        "@tanstack/react-query": "5.72.2",
+        "@tanstack/react-query-devtools": "5.72.2",
         "@tanstack/react-table": "^8.20.6",
         "@testcontainers/postgresql": "10.24.1",
         "@trpc/client": "11.0.4",
@@ -48,7 +48,7 @@
       "devDependencies": {
         "@eslint/js": "9.24.0",
         "@playwright/test": "1.51.1",
-        "@tanstack/eslint-plugin-query": "5.72.1",
+        "@tanstack/eslint-plugin-query": "5.72.2",
         "@tanstack/router-devtools": "1.115.2",
         "@tanstack/router-plugin": "1.115.2",
         "@trivago/prettier-plugin-sort-imports": "^5.2.1",
@@ -453,17 +453,17 @@
 
     "@tabler/icons-react": ["@tabler/icons-react@3.31.0", "", { "dependencies": { "@tabler/icons": "3.31.0" }, "peerDependencies": { "react": ">= 16" } }, "sha512-2rrCM5y/VnaVKnORpDdAua9SEGuJKVqPtWxeQ/vUVsgaUx30LDgBZph7/lterXxDY1IKR6NO//HDhWiifXTi3w=="],
 
-    "@tanstack/eslint-plugin-query": ["@tanstack/eslint-plugin-query@5.72.1", "", { "dependencies": { "@typescript-eslint/utils": "^8.18.1" }, "peerDependencies": { "eslint": "^8.57.0 || ^9.0.0" } }, "sha512-nAh9KKZ2UT50FTY7ha3NU+IBzC6XzXLtPlKFwfORM4+Tt/6eMOHgzE8oxYaRCr4uSNxCao0AK2WzLGHZo8ViSA=="],
+    "@tanstack/eslint-plugin-query": ["@tanstack/eslint-plugin-query@5.72.2", "", { "dependencies": { "@typescript-eslint/utils": "^8.18.1" }, "peerDependencies": { "eslint": "^8.57.0 || ^9.0.0" } }, "sha512-JzfDu6fA/6jj25td+NxYSjiSC2kqo62uVWgquqUUOgzQK+/eJ2IH3pVDeIXrrhQ9VsaJEBeaJN4Lc0klnlVvGQ=="],
 
     "@tanstack/history": ["@tanstack/history@1.95.0", "", {}, "sha512-w1/yWuIBqmG0Z0MPMf1OuOCce7FXyVH4L4dIA4rvpnjIUCH8qRUgloFAVg37nTMUbOmhMsY2NZDxCpKBv+CLJg=="],
 
-    "@tanstack/query-core": ["@tanstack/query-core@5.72.1", "", {}, "sha512-nOu0EEkZuJ0BZnYgeaEfo44+psq1jBO7/zp3KudixD4dvgOVerrhAhDEKsWx2N7MxB59mjO4r0ddP/VqWGPK+Q=="],
+    "@tanstack/query-core": ["@tanstack/query-core@5.72.2", "", {}, "sha512-fxl9/0yk3mD/FwTmVEf1/H6N5B975H0luT+icKyX566w6uJG0x6o+Yl+I38wJRCaogiMkstByt+seXfDbWDAcA=="],
 
-    "@tanstack/query-devtools": ["@tanstack/query-devtools@5.72.1", "", {}, "sha512-D0vEoQaiVq9ayCqvvxA9XkDq7TIesyPpvgP69arRtt5FQF6n/Hrta4SlkfXC4m9BCvFLlhLDcKGYa2eMQ4ZIIA=="],
+    "@tanstack/query-devtools": ["@tanstack/query-devtools@5.72.2", "", {}, "sha512-mMKnGb+iOhVBcj6jaerCFRpg8pACStdG8hmUBHPtToeZzs4ctjBUL1FajqpVn2WaMxnq8Wya+P3Q5tPFNM9jQw=="],
 
-    "@tanstack/react-query": ["@tanstack/react-query@5.72.1", "", { "dependencies": { "@tanstack/query-core": "5.72.1" }, "peerDependencies": { "react": "^18 || ^19" } }, "sha512-4UEMyRx54xj144D2nDvDIMiXSG5BrqyCJrmyNoGbymNS+VWODcBDFrmRk9p2fe12UGZ4JtKPTNuW2Jg0aisUgQ=="],
+    "@tanstack/react-query": ["@tanstack/react-query@5.72.2", "", { "dependencies": { "@tanstack/query-core": "5.72.2" }, "peerDependencies": { "react": "^18 || ^19" } }, "sha512-SVNHzyBUYiis+XiCl+8yiPZmMYei2AKYY94wM/zpvB5l1jxqOo82FQTziSJ4pBi96jtYqvYrTMxWynmbQh3XKw=="],
 
-    "@tanstack/react-query-devtools": ["@tanstack/react-query-devtools@5.72.1", "", { "dependencies": { "@tanstack/query-devtools": "5.72.1" }, "peerDependencies": { "@tanstack/react-query": "^5.72.1", "react": "^18 || ^19" } }, "sha512-ckNRgABst3MLjpM2nD/CzQToCiaT3jb3Xhtf+GP/0/9ij9SPT/SC+lc3wUDSkT0OupnHobBBF5E1/Xp6B+XZLg=="],
+    "@tanstack/react-query-devtools": ["@tanstack/react-query-devtools@5.72.2", "", { "dependencies": { "@tanstack/query-devtools": "5.72.2" }, "peerDependencies": { "@tanstack/react-query": "^5.72.2", "react": "^18 || ^19" } }, "sha512-n53qr9JdHCJTCUba6OvMhwiV2CcsckngOswKEE7nM5pQBa/fW9c43qw8omw1RPT2s+aC7MuwS8fHsWT8g+j6IQ=="],
 
     "@tanstack/react-router": ["@tanstack/react-router@1.95.0", "", { "dependencies": { "@tanstack/history": "1.95.0", "@tanstack/react-store": "^0.7.0", "jsesc": "^3.0.2", "tiny-invariant": "^1.3.3", "tiny-warning": "^1.0.3" }, "peerDependencies": { "react": ">=18", "react-dom": ">=18" } }, "sha512-MWYs6fkwlvMfpszRA/2DI5issZCqFyF3DiuD1+ZwVAgFekiJwdj/+SQWML3pmIybRKeHT66GlxdXl0wbaAYCag=="],
 
