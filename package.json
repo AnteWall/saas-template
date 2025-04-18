@@ -57,7 +57,7 @@
     },
     "devDependencies": {
         "@eslint/js": "9.24.0",
-        "@playwright/test": "1.51.1",
+        "@playwright/test": "1.52.0",
         "@tanstack/eslint-plugin-query": "5.73.3",
         "@tanstack/router-devtools": "1.116.0",
         "@tanstack/router-plugin": "1.116.1",
