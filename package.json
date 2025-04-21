@@ -76,7 +76,7 @@
         "eslint-import-resolver-typescript": "4.3.4",
         "eslint-import-resolver-typescript-bun": "0.0.104",
         "eslint-plugin-import": "2.31.0",
-        "eslint-plugin-react-hooks": "5.2.0",
+        "eslint-plugin-react-hooks": "6.0.0",
         "eslint-plugin-react-refresh": "0.4.19",
         "pino-pretty": "13.0.0",
         "postcss": "^8.4.49",
