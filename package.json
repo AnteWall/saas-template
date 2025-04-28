@@ -65,7 +65,7 @@
         "@types/bun": "1.2.10",
         "@types/cors": "2.8.17",
         "@types/express": "5.0.1",
-        "@types/node": "22.15.2",
+        "@types/node": "22.15.3",
         "@types/react": "19.1.2",
         "@types/react-dom": "19.1.2",
         "@typescript-eslint/parser": "8.31.0",
