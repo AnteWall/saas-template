@@ -62,7 +62,7 @@
         "@tanstack/router-devtools": "1.120.3",
         "@tanstack/router-plugin": "1.120.3",
         "@trivago/prettier-plugin-sort-imports": "^5.2.1",
-        "@types/bun": "1.2.12",
+        "@types/bun": "1.2.13",
         "@types/cors": "2.8.18",
         "@types/express": "5.0.1",
         "@types/node": "22.15.17",
