@@ -41,7 +41,7 @@
         "express": "4.21.2",
         "globals": "16.1.0",
         "lucide-react": "^0.511.0",
-        "pino": "9.6.0",
+        "pino": "9.7.0",
         "pino-http": "10.4.0",
         "postmark": "4.0.5",
         "react": "19.1.0",
