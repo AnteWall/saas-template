@@ -40,7 +40,7 @@
         "date-fns": "4.1.0",
         "express": "4.21.2",
         "globals": "16.2.0",
-        "lucide-react": "^0.511.0",
+        "lucide-react": "^0.513.0",
         "pino": "9.7.0",
         "pino-http": "10.4.0",
         "postmark": "4.0.5",
